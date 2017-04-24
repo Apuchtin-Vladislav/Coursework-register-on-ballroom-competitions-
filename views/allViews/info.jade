@@ -1,0 +1,36 @@
+extends ./../index.jade
+
+block info
+    -var amountAplications = 10;
+
+    div(class="mainContainer")
+        table(border= 1, class="navCompetition")
+            thead
+                th.navFirstElement 
+                    a(href="/") Main
+                th
+                    a(href='/competitions') Competitions
+                th
+                    a(href='https://vk.com/vlad_ork') VK
+        div(class="col-xs-12")
+            h2(style="text-align: center;")
+                span(class="glyphicon glyphicon glyphicon-star")
+                    b(style="word-spacing: -20px;") #{competition[0].TITLE} 
+                br
+                small #{competition[0].PLACE}, #{competition[0].DATECOMPETITION}
+        table(border= 1, class="mainTable")
+            thead
+                th.topTable Info
+                th.topTable  
+                    a(href='/competition/#{competition[0].IDCOMPETITION}/details') Applications(#{competition[0].COUNT})
+                th.topTable 
+                    a(href='/competition/#{competition[0].IDCOMPETITION}/registration') Registration
+        div.mainTable
+            p
+                strong #{competition[0].TITLE}
+            p   
+                strong #{competition[0].DATECOMPETITION}
+            p   
+                strong Place: #{competition[0].PLACE}
+            p   
+                strong Organizer: #{competition[0].ORGANIZERS}

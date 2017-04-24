@@ -1,0 +1,66 @@
+extends ./../index.jade
+
+block inBD
+    -var i = 0;
+    div(class="mainContainer")
+        table(border= 1, class="navCompetition")
+            thead
+                th.navFirstElement 
+                    a(href="/") Main
+                th
+                    a(href='/competitions') Competitions
+                th
+                    a(href='https://vk.com/vlad_ork') VK
+        div(class="col-xs-12")
+            h2(style="text-align: center;")
+                span(class="glyphicon glyphicon glyphicon-star")
+                    b(style="word-spacing: -20px;") #{inBD[0].TITLE} 
+                br
+                small #{inBD[0].PLACE}, #{inBD[0].DATECOMPETITION}
+        table(border= 1, class="mainTable")
+            thead
+                th.topTable
+                    a(href='/competition/#{inBD[0].IDCOMPETITION}/info') Info
+                th.topTable  
+                    a(href='/competition/#{inBD[0].IDCOMPETITION}/details') Applications(#{inBD[0].COUNT})
+                th.topTable
+                    a(href='/competition/#{inBD[0].IDCOMPETITION}/registration') Registration
+        
+        form(class="form-horizontal" name='form_info' 
+            action="/competition/#{inBD[0].IDCOMPETITION}/registration/inBD/answer" method="post")
+            div(class="form-group")
+                div(class="col-sm-4")
+                    label(for="partner") Partner:
+                    select(class="form-control", name="Partner", id="partner")
+                        each partner in inBD.Partners
+                            option #{partner.CODEPARTNER}_#{partner.NAMEPARTNER}_#{partner.SURNAMEPARTNER}_#{partner.COUNTRY}
+                            //- option #{partner.CODEPARTNER} : #{partner.NAMEPARTNER} : #{partner.SURNAMEPARTNER} :  #{partner.COUNTRY}
+                    label(for="shePartner") Shepartner:
+                    select(class="form-control", name="Shepartner", id="shePartner")
+                        each shepartner in inBD.ShePartners
+                            option #{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}
+                    label(for="coach") Coach:
+                    select(class="form-control", name="Choach", id="coach")
+                        each coach in inBD.Coaches
+                            option #{coach.NAMECOACH} #{coach.SURNAMECOACH}
+                    label(for="class") Class:
+                    select(class="form-control", name="Clase", id="class")
+                        each competitionClass in inBD.Classes
+                            option #{competitionClass.CATEGORYNAME} #{competitionClass.CLASSNAME} #{competitionClass.TYPEOFPROGRAM}
+                            div(class="form-group")
+                    br
+            button(type="submit" class="btn btn-default" onClick='send()') Submit
+    script.
+        var inputPartner = document.getElementById("partner");
+        inputPartner.oninput = function() {
+            var input = inputPartner.value.split("_");
+            var values = new Array();
+            for(i in input) {
+                var j = ['CODEPARTNER', 'NAMEPARTNER', 'SURNAMEPARTNER', 'COUNTRY'];
+                values[j[i]] = input[i];
+            }
+            console.log(values);
+            document.getElementById('result').innerHTML = values;
+        };
+        //- br
+        //- button(class="btn btn-default" onClick='send()') SBMT

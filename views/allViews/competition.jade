@@ -1,0 +1,63 @@
+extends ./../index.jade
+
+block competition
+    -var indexRow = 1;
+    div.mainContainer
+        table(border= 1, class="navCompetition")
+            thead
+                th.navFirstElement 
+                    a(href="/") Main
+                th
+                    a(href='/competitions') Competitions
+                th
+                    a(href='https://vk.com/vlad_ork') VK
+        div(class="col-xs-12")
+            h2(style="text-align: center;")
+                span(class="glyphicon glyphicon glyphicon-star")
+                    b(style="word-spacing: -20px;") #{competition[0].TITLE} 
+                br
+                small #{competition[0].PLACE}, #{competition[0].DATECOMPETITION}
+        table(border= 1, class="mainTable")
+            thead
+                th.topTable 
+                    a(href='/competition/#{competition[0].IDCOMPETITION}/info') Info
+                th.topTable  Applications(#{competition[0].COUNT})
+                th.topTable 
+                    a(href='/competition/#{competition[0].IDCOMPETITION}/registration') Registration
+        table(border= 1, class="mainTable")
+            thead
+                tr
+                    th(rowspan="2")
+                    th.topTable(rowspan="2") Program
+                    th.topTable(colspan="3") Registered participants
+                tr
+                    td(style="text-align: center;") Class
+                    td Type of program
+                    td Amount
+            tbody
+                tr 
+                    each index in competition.moreInformation
+                        tr
+                            td= indexRow++
+                            td #{index.CATEGORYNAME}
+                            if(index.COUNT === 0)
+                                td #{index.CLASSNAME} 
+                                td #{index.TYPEOFPROGRAM}
+                                td
+                            else
+                                td #{index.CLASSNAME} 
+                                td #{index.TYPEOFPROGRAM}
+                                td 
+                                    a(href='/competition/#{competition[0].IDCOMPETITION}/oneCategory/#{index.CATEGORYNAME}/#{index.CLASSNAME}/#{index.TYPEOFPROGRAM}') #{index.COUNT}
+                            //- if(index.FULL >= 1)
+                            //-     td 
+                            //-         a(href='/competition/oneCategory/id') #{index.FULL}
+                            //-     td
+                            //-     td
+                            //- else
+                            //-     td
+                            //-     td 
+                            //-         a(href='/competition/oneCategory/id') #{index.STANDART}
+                            //-     td 
+                            //-         a(href='/competition/oneCategory/id') #{index.LATIN}
+//- Class - A,B,C Typeofprogram - Standert Amount - 10 
