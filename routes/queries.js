@@ -263,13 +263,6 @@ function getInformationFromBD (req, callback) {
 		}
 	});
 }
-
-
-
-
-
-
-
 module.exports = {
 	getAllCompetitions: getAllCompetitions,
 	getSingleCompetition: getSingleCompetition,
