@@ -673,6 +673,35 @@ where Couples.codePartner = Partners.codePartner
    and BallroomPrograms.typeOfProgram = 'Standart'
 order by Couples.PairNumber, BallroomPrograms.typeOfProgram DESC;
 
+-- Partner
+select * 
+from Partners
+where codePartner = 1;
+
+--class program ballroom program
+select Categories.CategoryID, Classes.ClassID, BallroomPrograms.idProgram
+from Competitions 
+   INNER JOIN BallroomPrograms 
+      ON Competitions.idCompetition = BallroomPrograms.idCompetition
+   INNER JOIN Categories 
+      ON BallroomPrograms.idCompetition = Categories.idCompetition
+   INNER JOIN consistClass
+      ON Categories.idCompetition = consistClass.idCompetition
+         and Categories.idProgram = consistClass.idProgram
+            and Categories.CategoryID = consistClass.CategoryID
+   INNER JOIN Classes
+      ON consistClass.ClassID = Classes.ClassID
+         and BallroomPrograms.idProgram = Categories.idProgram
+where Competitions.idCompetition = 1
+   and Categories.CategoryName = 'Adult'
+   and Classes.ClassName = 'A'
+   and BallroomPrograms.typeOfProgram = 'Standart'
+group by Categories.CategoryID, Classes.ClassID, BallroomPrograms.idProgram;
+
+-- couple
+select * 
+from Couples, Competitions
+where Couples.PairNumber = 1 and Competitions.IdCompetition = 1;
 -- select Categories.CategoryName, BallroomPrograms.typeOfProgram
 -- from Categories, BallroomPrograms
 -- where Categories.IdCompetition = 1 and BallroomPrograms.idcompetition = 1 

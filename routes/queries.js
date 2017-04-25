@@ -1,7 +1,7 @@
 var Firebird = require('node-firebird');
 
 var options = {
-	database: 'D:/Pars/3 course/2 semester/DataBase/Coursework/Coursework/public/bd/COURSEWORK_VER2.FDB',
+	database: 'D:/Pars/3 course/2 semester/DataBase/Coursework/git_Coursework/public/bd/COURSEWORK_VER2.FDB',
 	port: 3050,
 	user: 'SYSDBA',
 	password: 'masterkey',
@@ -263,9 +263,144 @@ function getInformationFromBD (req, callback) {
 		}
 	});
 }
+
+function addCouple (req, callback) {
+/*--------------------------------- REQUEST ---------------------------------------*/
+
+	Firebird.attach(options, function(err, db){
+		if (err) {
+			console.log(err.message);
+			throw err;
+		} else {
+			console.log("DATABASE (addCouple) CONNECTED");
+			// var ob = {};
+			// function goToDB (select, req_param, name) {
+			// 	db.query(select, [req_param], function(err, result) {
+			// 		if (err) {
+			// 			console.log(err);
+			// 			db.detach(disconnectFromDB());
+			// 		} else {
+			// 			db.detach(disconnectFromDB());
+			// 			ob[name] = result[0];					}
+			// 	}); 
+			// }
+			// // goToDB(`select * from Partners where codePartner =?`, req.Partner, 'partner');
+			// console.log(goToDB(`select * from Partners where codePartner =?`, req.Partner, 'partner'));
+			var input = req.Class.split("_");
+            var values = new Array();
+            for(i in input) {
+                var j = ['category', 'class', 'program'];
+                values[j[i]] = input[i];
+            }
+
+			db.query(`select * from Partners where codePartner =?`, [req.Partner], function(err, partner) {
+				if (err) {
+					console.log(err);
+					db.detach(disconnectFromDB());
+				} else {
+					var couple = new Object();
+					couple.idCompetition = Number(req.idCompetition);
+					couple.partner = partner[0];
+					db.query(`select * from Shepartners where codeShePartner =?`, [req.Shepartner], function(err, shepartner) {
+						if (err) {
+							console.log(err);
+							db.detach(disconnectFromDB());
+						} else {
+							couple.shepartner = shepartner[0];
+							db.query(`select * from Coaches where codeCoach =?`, [req.Coach], function(err, coach) {
+								if (err) {
+									console.log(err);
+									db.detach(disconnectFromDB());
+								} else {
+									couple.coach = coach[0];
+									db.query(`
+										select Categories.CategoryID, Classes.ClassID, BallroomPrograms.idProgram
+										from Competitions 
+										   INNER JOIN BallroomPrograms 
+										      ON Competitions.idCompetition = BallroomPrograms.idCompetition
+										   INNER JOIN Categories 
+										      ON BallroomPrograms.idCompetition = Categories.idCompetition
+										   INNER JOIN consistClass
+										      ON Categories.idCompetition = consistClass.idCompetition
+										         and Categories.idProgram = consistClass.idProgram
+										            and Categories.CategoryID = consistClass.CategoryID
+										   INNER JOIN Classes
+										      ON consistClass.ClassID = Classes.ClassID
+										         and BallroomPrograms.idProgram = Categories.idProgram
+										where Competitions.idCompetition =?
+										   and Categories.CategoryName =?
+										   and Classes.ClassName =?
+										   and BallroomPrograms.typeOfProgram =?
+										group by Categories.CategoryID, Classes.ClassID, BallroomPrograms.idProgram;  
+										`, [req.idCompetition, values.category, values.class, values.program]
+											, function(err, classCouple) {
+										if (err) {
+											console.log(err);
+											db.detach(disconnectFromDB());
+										} else {
+											couple.classCouple = classCouple[0];
+											couple.PAIRNUMBER = Number(couple.idCompetition + 
+												couple.partner.CODEPARTNER + couple.shepartner.CODESHEPARTNER)
+											//console.log(typeof (Number(couple.idCompetition + couple.partner.CODEPARTNER)));
+											console.log([parseInt(couple.classCouple.CLASSID), couple.idCompetition, 
+															couple.classCouple.IDPROGRAM, couple.classCouple.CATEGORYID,
+																couple.PAIRNUMBER, couple.coach.SURNAMECOACH, 
+																	couple.coach.NAMECOACH, couple.coach.CODECOACH,
+																	couple.partner.SURNAMEPARTNER,
+																		couple.partner.NAMEPARTNER, couple.partner.CODEPARTNER, 
+																		couple.shepartner.SURNAMESHEPARTNER, 
+																		couple.shepartner.NAMESHEPARTNER,
+																		couple.shepartner.CODESHEPARTNER]);
+											db.query(`
+												INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, 
+													PairNumber, surnameCoach, nameCoach, codeCoach, surnamePartner,
+													namePartner, codePartner, surnameShepartner, nameShepartner, codeShePartner) 
+												VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+												`, [couple.idCompetition, couple.classCouple.IDPROGRAM,
+														couple.classCouple.CATEGORYID, couple.classCouple.CLASSID,
+																couple.PAIRNUMBER, couple.coach.SURNAMECOACH, 
+																couple.coach.NAMECOACH, couple.coach.CODECOACH,
+																	couple.partner.SURNAMEPARTNER,
+																		couple.partner.NAMEPARTNER, couple.partner.CODEPARTNER, 
+																		couple.shepartner.SURNAMESHEPARTNER, 
+																		couple.shepartner.NAMESHEPARTNER,
+																		couple.shepartner.CODESHEPARTNER],
+												function(err, result) {
+												if (err) {
+													console.log(err);
+													db.detach(disconnectFromDB());
+												} else {
+									        		//console.log(result[0].PAIRNUMBER);
+											        db.query(`
+											        	select * from Couples where PAIRNUMBER =?;
+											        	`, [couple.PAIRNUMBER], function(err, result) {
+											        	if (err) {
+															console.log(err);
+															db.detach(disconnectFromDB());
+														} else {
+												            console.log(result);
+												            db.detach(disconnectFromDB());
+												            callback(result);
+											        	}
+											        });
+											    }
+											});
+										}
+									});	
+								}
+							});	
+						}
+					});	
+				}
+			});		
+		}
+	});
+}
+
 module.exports = {
 	getAllCompetitions: getAllCompetitions,
 	getSingleCompetition: getSingleCompetition,
 	getInfoSingleCategory: getInfoSingleCategory,
-	getInformationFromBD: getInformationFromBD
+	getInformationFromBD: getInformationFromBD,
+	addCouple: addCouple
 }

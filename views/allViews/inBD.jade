@@ -26,41 +26,62 @@ block inBD
                 th.topTable
                     a(href='/competition/#{inBD[0].IDCOMPETITION}/registration') Registration
         
-        form(class="form-horizontal" name='form_info' 
+        form(id='regForm' class="form-horizontal" name='form_info' 
             action="/competition/#{inBD[0].IDCOMPETITION}/registration/inBD/answer" method="post")
             div(class="form-group")
                 div(class="col-sm-4")
+
                     label(for="partner") Partner:
-                    select(class="form-control", name="Partner", id="partner")
+                    select(class="form-control selectpicker", name="Partner", data-live-search="true") 
+                        option(selected= true, disabled) Choose: partner
                         each partner in inBD.Partners
-                            option #{partner.CODEPARTNER}_#{partner.NAMEPARTNER}_#{partner.SURNAMEPARTNER}_#{partner.COUNTRY}
-                            //- option #{partner.CODEPARTNER} : #{partner.NAMEPARTNER} : #{partner.SURNAMEPARTNER} :  #{partner.COUNTRY}
+                            option(value='#{partner.CODEPARTNER}' data-tokens='#{partner.NAMEPARTNER} #{partner.SURNAMEPARTNER}') #{partner.NAMEPARTNER} #{partner.SURNAMEPARTNER}, #{partner.COUNTRY}
+
                     label(for="shePartner") Shepartner:
-                    select(class="form-control", name="Shepartner", id="shePartner")
+                    select(class="form-control selectpicker", name="Shepartner", data-live-search="true")
+                        option(selected= true, disabled) Choose: shepartner
                         each shepartner in inBD.ShePartners
-                            option #{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}
+                            option(value='#{shepartner.CODESHEPARTNER}' data-tokens='#{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}') #{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}, #{shepartner.COUNTRY}
+
                     label(for="coach") Coach:
-                    select(class="form-control", name="Choach", id="coach")
+                    select(class="form-control selectpicker", name="Coach", data-live-search="true")
+                        option(selected= true, disabled) Choose: coach
                         each coach in inBD.Coaches
-                            option #{coach.NAMECOACH} #{coach.SURNAMECOACH}
-                    label(for="class") Class:
-                    select(class="form-control", name="Clase", id="class")
+                            option(value='#{coach.CODECOACH}' data-tokens='#{coach.NAMECOACH} #{coach.SURNAMECOACH}') #{coach.NAMECOACH} #{coach.SURNAMECOACH}, #{coach.COUNTRY}
+
+                    label(for="class selectpicker") Category, Class, Program:
+                    select(class="form-control", name="Class")
+                        option(selected= true, disabled) Choose: category, class, program
                         each competitionClass in inBD.Classes
-                            option #{competitionClass.CATEGORYNAME} #{competitionClass.CLASSNAME} #{competitionClass.TYPEOFPROGRAM}
-                            div(class="form-group")
-                    br
-            button(type="submit" class="btn btn-default" onClick='send()') Submit
+                            option(value='#{competitionClass.CATEGORYNAME}_#{competitionClass.CLASSNAME}_#{competitionClass.TYPEOFPROGRAM}') #{competitionClass.CATEGORYNAME}, #{competitionClass.CLASSNAME}, #{competitionClass.TYPEOFPROGRAM}
+            button(id='couple', type="submit", class="btn btn-default") Submit
     script.
-        var inputPartner = document.getElementById("partner");
-        inputPartner.oninput = function() {
-            var input = inputPartner.value.split("_");
-            var values = new Array();
-            for(i in input) {
-                var j = ['CODEPARTNER', 'NAMEPARTNER', 'SURNAMEPARTNER', 'COUNTRY'];
-                values[j[i]] = input[i];
-            }
-            console.log(values);
-            document.getElementById('result').innerHTML = values;
-        };
-        //- br
-        //- button(class="btn btn-default" onClick='send()') SBMT
+        //- document.getElementById("couple").addEventListener("click", partner);
+        //- function partner() {
+        //-     var inputPartner = document.getElementById("partner");
+        //-     console.log(inputPartner.value);
+        //-     inputPartner.oninput = function() {
+        //-         var input = inputPartner.value.split("_");
+        //-         var values = new Array();
+        //-         for(i in input) {
+        //-             var j = ['CODEPARTNER', 'NAMEPARTNER', 'SURNAMEPARTNER', 'COUNTRY'];
+        //-             values[j[i]] = input[i];
+        //-         }
+        //-         console.log(values);
+        //-         //document.getElementById('partner').innerHTML = values;
+        //-     }
+        //- }
+        //- window.partner = function() {
+            //- var inputPartner = document.getElementById("partner");
+            //- inputPartner.oninput = function() {
+            //-     var input = inputPartner.value.split("_");
+            //-     var values = new Array();
+            //-     for(i in input) {
+            //-         var j = ['CODEPARTNER', 'NAMEPARTNER', 'SURNAMEPARTNER', 'COUNTRY'];
+            //-         values[j[i]] = input[i];
+            //-     }
+            //-     console.log(values);
+            //-     document.getElementById('partner').innerHTML = values;
+            //- };
+        //- }
+//- имя только буквы пробел Фамилия, Страна

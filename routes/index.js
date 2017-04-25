@@ -39,7 +39,7 @@ router.get('/competition/:id/registration', function (req, res, next) {
 
 router.get('/competition/:id/registration/inBD', function (req, res, next) {
 	db.getInformationFromBD(req.params.id, function (result) {
-		console.log(result); 
+		//console.log(result); 
 		res.render('../views/allViews/inBD.jade', {inBD: result});
 	});
 });
@@ -54,10 +54,14 @@ router.post('/competition/:id/info',function (request, response) {
 	if(!request.body) return response.sendStatus(400);
 });
 
-router.post('/competition/:id/registration/inBD/answer', urlencodedParser, function (request, response) {
+router.post('/competition/:id/registration/inBD/answer', urlencodedParser, function(request, response) {
 	if(!request.body) return response.sendStatus(400);
-	console.log(request.body);  
-	response.send(request.body);
+	console.log(request.body);
+	request.body.idCompetition = request.params.id;
+	db.addCouple(request.body, function (result) {
+		console.log(result);
+		response.send([request.body, result]);
+	});
 });
 
 
