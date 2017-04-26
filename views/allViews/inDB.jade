@@ -1,6 +1,6 @@
 extends ./../index.jade
 
-block inBD
+block inDB
     div(class="mainContainer")
         table(border= 1, class="navCompetition")
             thead
@@ -13,42 +13,42 @@ block inBD
         div(class="col-xs-12")
             h2(style="text-align: center;")
                 span(class="glyphicon glyphicon glyphicon-star")
-                    b(style="word-spacing: -20px;") #{inBD[0].TITLE} 
+                    b(style="word-spacing: -20px;") #{inDB[0].TITLE} 
                 br
-                small #{inBD[0].PLACE}, #{inBD[0].DATECOMPETITION}
+                small #{inDB[0].PLACE}, #{inDB[0].DATECOMPETITION}
         table(border= 1, class="mainTable")
             thead
                 th.topTable
-                    a(href='/competition/#{inBD[0].IDCOMPETITION}/info') Info
+                    a(href='/competition/#{inDB[0].IDCOMPETITION}/info') Info
                 th.topTable  
-                    a(href='/competition/#{inBD[0].IDCOMPETITION}/details') Applications(#{inBD[0].COUNT})
+                    a(href='/competition/#{inDB[0].IDCOMPETITION}/details') Applications(#{inDB[0].COUNT})
                 th.topTable
-                    a(href='/competition/#{inBD[0].IDCOMPETITION}/registration') Registration
+                    a(href='/competition/#{inDB[0].IDCOMPETITION}/registration') Registration
         
         form(id='regForm' class="form-horizontal" name='form_info' 
-            action="/competition/#{inBD[0].IDCOMPETITION}/registration/inBD/answer" method="post")
+            action="/competition/#{inDB[0].IDCOMPETITION}/registration/inDB/answer" method="post")
             div(class="form-group")
                 div(class="col-sm-5")
 
                     label(for="partner") Partner:
                     select(class="form-control selectpicker", name="Partner", data-live-search="true", title='Choose: partner', required)
-                        each partner in inBD.Partners
+                        each partner in inDB.Partners
                             option(value='#{partner.CODEPARTNER}' data-tokens='#{partner.NAMEPARTNER} #{partner.SURNAMEPARTNER}') #{partner.NAMEPARTNER} #{partner.SURNAMEPARTNER}, #{partner.COUNTRY}
 
                     label(for="shePartner") Shepartner:
                     select(class="form-control selectpicker", name="Shepartner",
                         data-live-search="true", title='Choose: shepartner', required)
-                        each shepartner in inBD.ShePartners
+                        each shepartner in inDB.ShePartners
                             option(value='#{shepartner.CODESHEPARTNER}' data-tokens='#{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}') #{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}, #{shepartner.COUNTRY}
 
                     label(for="coach") Coach:
                     select(class="form-control selectpicker", name="Coach", data-live-search="true", title='Choose: coach', required)
-                        each coach in inBD.Coaches
+                        each coach in inDB.Coaches
                             option(value='#{coach.CODECOACH}' data-tokens='#{coach.NAMECOACH} #{coach.SURNAMECOACH}') #{coach.NAMECOACH} #{coach.SURNAMECOACH}, #{coach.COUNTRY}
 
                     label(for="class") Category, Class, Program:
                     select(class="form-control selectpicker", name="Class", title='Choose: category, class, program', required)
-                        each competitionClass in inBD.Classes
+                        each competitionClass in inDB.Classes
                             option(value='#{competitionClass.CATEGORYNAME}_#{competitionClass.CLASSNAME}_#{competitionClass.TYPEOFPROGRAM}') #{competitionClass.CATEGORYNAME}, #{competitionClass.CLASSNAME}, #{competitionClass.TYPEOFPROGRAM}
             button(id='couple', type="submit", class="btn btn-default") Submit
     script.

@@ -37,10 +37,10 @@ router.get('/competition/:id/registration', function (req, res, next) {
 	});
 });
 
-router.get('/competition/:id/registration/inBD', function (req, res, next) {
-	db.getInformationFromBD(req.params.id, function (result) {
+router.get('/competition/:id/registration/inDB', function (req, res, next) {
+	db.getInformationFromDB(req.params.id, function (result) {
 		//console.log(result); 
-		res.render('../views/allViews/inBD.jade', {inBD: result});
+		res.render('../views/allViews/inDB.jade', {inDB: result});
 	});
 });
 
@@ -54,7 +54,7 @@ router.post('/competition/:id/info',function (request, response) {
 	if(!request.body) return response.sendStatus(400);
 });
 
-router.post('/competition/:id/registration/inBD/answer', urlencodedParser, function(request, response) {
+router.post('/competition/:id/registration/inDB/answer', urlencodedParser, function(request, response) {
 	if(!request.body) return response.sendStatus(400);
 	console.log(request.body);
 	request.body.idCompetition = request.params.id;

@@ -173,14 +173,14 @@ function getInfoSingleCategory (req, callback) {
 	});
 }
 
-function getInformationFromBD (req, callback) {
+function getInformationFromDB (req, callback) {
 /*--------------------------------- REQUEST ---------------------------------------*/
 	Firebird.attach(options, function(err, db){
 		if (err) {
 			console.log(err.message);
 			throw err;
 		} else {
-			console.log("DATABASE (getInformationFromBD) CONNECTED");
+			console.log("DATABASE (getInformationFromDB) CONNECTED");
 			db.query(`
 				select Competitions.IdCompetition, Competitions.Title, 
 				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
@@ -429,7 +429,7 @@ module.exports = {
 	getAllCompetitions: getAllCompetitions,
 	getSingleCompetition: getSingleCompetition,
 	getInfoSingleCategory: getInfoSingleCategory,
-	getInformationFromBD: getInformationFromBD,
+	getInformationFromDB: getInformationFromDB,
 	addCouple: addCouple,
 	getInfoFromSingleCompetition: getInfoFromSingleCompetition
 }
