@@ -1,7 +1,6 @@
 extends ./../index.jade
 
 block inBD
-    -var i = 0;
     div(class="mainContainer")
         table(border= 1, class="navCompetition")
             thead
@@ -29,29 +28,26 @@ block inBD
         form(id='regForm' class="form-horizontal" name='form_info' 
             action="/competition/#{inBD[0].IDCOMPETITION}/registration/inBD/answer" method="post")
             div(class="form-group")
-                div(class="col-sm-4")
+                div(class="col-sm-5")
 
                     label(for="partner") Partner:
-                    select(class="form-control selectpicker", name="Partner", data-live-search="true") 
-                        option(selected= true, disabled) Choose: partner
+                    select(class="form-control selectpicker", name="Partner", data-live-search="true", title='Choose: partner', required)
                         each partner in inBD.Partners
                             option(value='#{partner.CODEPARTNER}' data-tokens='#{partner.NAMEPARTNER} #{partner.SURNAMEPARTNER}') #{partner.NAMEPARTNER} #{partner.SURNAMEPARTNER}, #{partner.COUNTRY}
 
                     label(for="shePartner") Shepartner:
-                    select(class="form-control selectpicker", name="Shepartner", data-live-search="true")
-                        option(selected= true, disabled) Choose: shepartner
+                    select(class="form-control selectpicker", name="Shepartner",
+                        data-live-search="true", title='Choose: shepartner', required)
                         each shepartner in inBD.ShePartners
                             option(value='#{shepartner.CODESHEPARTNER}' data-tokens='#{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}') #{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}, #{shepartner.COUNTRY}
 
                     label(for="coach") Coach:
-                    select(class="form-control selectpicker", name="Coach", data-live-search="true")
-                        option(selected= true, disabled) Choose: coach
+                    select(class="form-control selectpicker", name="Coach", data-live-search="true", title='Choose: coach', required)
                         each coach in inBD.Coaches
                             option(value='#{coach.CODECOACH}' data-tokens='#{coach.NAMECOACH} #{coach.SURNAMECOACH}') #{coach.NAMECOACH} #{coach.SURNAMECOACH}, #{coach.COUNTRY}
 
-                    label(for="class selectpicker") Category, Class, Program:
-                    select(class="form-control", name="Class")
-                        option(selected= true, disabled) Choose: category, class, program
+                    label(for="class") Category, Class, Program:
+                    select(class="form-control selectpicker", name="Class", title='Choose: category, class, program', required)
                         each competitionClass in inBD.Classes
                             option(value='#{competitionClass.CATEGORYNAME}_#{competitionClass.CLASSNAME}_#{competitionClass.TYPEOFPROGRAM}') #{competitionClass.CATEGORYNAME}, #{competitionClass.CLASSNAME}, #{competitionClass.TYPEOFPROGRAM}
             button(id='couple', type="submit", class="btn btn-default") Submit

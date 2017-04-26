@@ -59,8 +59,14 @@ router.post('/competition/:id/registration/inBD/answer', urlencodedParser, funct
 	console.log(request.body);
 	request.body.idCompetition = request.params.id;
 	db.addCouple(request.body, function (result) {
-		console.log(result);
-		response.send([request.body, result]);
+		console.log(result === undefined, result.length === undefined);
+
+		db.getInfoFromSingleCompetition(request.params.id, function (allInformation) {
+			result.info = allInformation[0];
+			console.log(result);
+
+			response.render('../views/allViews/answer.jade', {answer: result});
+		});
 	});
 });
 

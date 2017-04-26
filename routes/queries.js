@@ -341,7 +341,6 @@ function addCouple (req, callback) {
 											couple.classCouple = classCouple[0];
 											couple.PAIRNUMBER = Number(couple.idCompetition + 
 												couple.partner.CODEPARTNER + couple.shepartner.CODESHEPARTNER)
-											//console.log(typeof (Number(couple.idCompetition + couple.partner.CODEPARTNER)));
 											console.log([parseInt(couple.classCouple.CLASSID), couple.idCompetition, 
 															couple.classCouple.IDPROGRAM, couple.classCouple.CATEGORYID,
 																couple.PAIRNUMBER, couple.coach.SURNAMECOACH, 
@@ -368,9 +367,9 @@ function addCouple (req, callback) {
 												function(err, result) {
 												if (err) {
 													console.log(err);
+													callback(err);
 													db.detach(disconnectFromDB());
 												} else {
-									        		//console.log(result[0].PAIRNUMBER);
 											        db.query(`
 											        	select * from Couples where PAIRNUMBER =?;
 											        	`, [couple.PAIRNUMBER], function(err, result) {
@@ -378,7 +377,6 @@ function addCouple (req, callback) {
 															console.log(err);
 															db.detach(disconnectFromDB());
 														} else {
-												            console.log(result);
 												            db.detach(disconnectFromDB());
 												            callback(result);
 											        	}
@@ -397,10 +395,41 @@ function addCouple (req, callback) {
 	});
 }
 
+function getInfoFromSingleCompetition (req, callback) {
+/*--------------------------------- REQUEST ---------------------------------------*/
+	Firebird.attach(options, function(err, db){
+		if (err) {
+			console.log(err.message);
+			throw err;
+		} else {
+			console.log("DATABASE (getSingleCompetition) CONNECTED");
+			db.query(`
+				select Competitions.IdCompetition, Competitions.Title, 
+				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
+				      Competitions.Organizers, Competitions.Country, count(Couples.codePartner)
+				from Competitions, Couples
+				where Competitions.IdCompetition =?
+				group by Competitions.IdCompetition, Competitions.Title, 
+				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
+				      Competitions.Organizers, Competitions.Country;
+      		`, [req], function(err, result) {
+				if (err) {
+					console.log(err);
+					db.detach(disconnectFromDB());
+				} else {
+					db.detach(disconnectFromDB());
+					callback(result);
+				}
+			});		
+		}
+	});
+}
+
 module.exports = {
 	getAllCompetitions: getAllCompetitions,
 	getSingleCompetition: getSingleCompetition,
 	getInfoSingleCategory: getInfoSingleCategory,
 	getInformationFromBD: getInformationFromBD,
-	addCouple: addCouple
+	addCouple: addCouple,
+	getInfoFromSingleCompetition: getInfoFromSingleCompetition
 }
