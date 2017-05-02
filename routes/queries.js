@@ -139,7 +139,6 @@ function getInfoSingleCategory (req, callback) {
 			throw err;
 		} else {
 			console.log("DATABASE (getInfoSingleCategory) CONNECTED");
-			console.log(req.id, req.category, req.class, req.program);
 			db.query(`SELECT DISTINCT Couples.PairNumber, Couples.surnamePartner, Couples.namePartner,
 					   Partners.Country, Couples.surnameShepartner, Couples.nameShepartner, Shepartners.Country,
 					   Classes.ClassName, Categories.CategoryName, BallroomPrograms.typeOfProgram
@@ -166,7 +165,10 @@ function getInfoSingleCategory (req, callback) {
 				} else {
 					db.detach(disconnectFromDB());
 					result['idCompetition'] = req.id;
-					callback(result);
+					getInfoFromSingleCompetition(req.id, function (argument) {
+						result.moreInformation = argument[0];
+						callback(result); 
+					})
 				}
 			});		
 		}

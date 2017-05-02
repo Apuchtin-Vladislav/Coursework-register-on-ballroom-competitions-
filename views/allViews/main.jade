@@ -2,11 +2,12 @@ extends ./../index.jade
 
 block main
     div(class="mainContainer")
-        table(border= 1, class="navCompetition")
-            thead
-                th.navFirstElement Main
-                th
-                    a(href='/competitions') Competitions
-                th
-                    a(href='https://vk.com/vlad_ork') VK
+        div(class="col-xs-12 text-center") 
+            table(border= 1, class="navCompetition")
+                thead
+                    th(class="col-sm-3 text-center") Main
+                    th(class="col-sm-3 text-center")
+                        a(href='/competitions') Competitions
+                    th(class="col-sm-3 text-center")
+                        a(href='https://vk.com/vlad_ork') VK
     

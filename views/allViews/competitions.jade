@@ -1,29 +1,28 @@
 extends ./../index.jade
 
 block competitions
-    -var competition = {Date:"09.04.2017", Title:"Emotion Dance", Place:"Minsk", Organizers:"Rondol Oleksandr"};
-    -var href = '/competition/details';
-    -var amountAplications = 10;
-    div(class="mainContainer")
-        table(border= 1, class="navCompetition")
-            thead
-                th.navFirstElement
-                    a(href='/') Main
-                th Competitions
-                th
-                    a(href='https://vk.com/vlad_ork') VK
-        table(border = 1, class="mainTable")
-            thead
-                th.topTable Date
-                th.topTable Title
-                th.topTable Place
-                th.topTable Organizers
-                th.topTable Applications
-            each competition in competitions
-                tbody
-                    td.navFirstElement #{competition.DATECOMPETITION}
-                    td 
-                        a(href='/competition/#{competition.IDCOMPETITION}/details') #{competition.TITLE}
-                    td #{competition.PLACE}
-                    td #{competition.ORGANIZERS}
-                    td #{competition.COUNT}
+    div.mainContainer
+        div(class="col-xs-12 text-center")
+            table(border= 1, class="navCompetition")
+                thead
+                    th(class="col-sm-3 text-center")
+                        a(href='/') Main
+                    th(class="col-sm-3 text-center") Competitions
+                    th(class="col-sm-3 text-center")
+                        a(href='https://vk.com/vlad_ork') VK
+        div(class="col-xs-12 text-center")    
+            table(border = 1, class="mainTable")
+                thead
+                    th.text-center Date
+                    th.text-center Title
+                    th.text-center Place
+                    th.text-center Organizers
+                    th.text-center Applications
+                each competition in competitions
+                    tbody
+                        td #{competition.DATECOMPETITION}
+                        td 
+                            a(href='/competition/#{competition.IDCOMPETITION}/details') #{competition.TITLE}
+                        td #{competition.PLACE}
+                        td #{competition.ORGANIZERS}
+                        td #{competition.COUNT}

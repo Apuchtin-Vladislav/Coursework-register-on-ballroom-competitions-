@@ -3,50 +3,52 @@ extends ./../index.jade
 block competition
     -var indexRow = 1;
     div.mainContainer
-        table(border= 1, class="navCompetition")
-            thead
-                th.navFirstElement 
-                    a(href="/") Main
-                th
-                    a(href='/competitions') Competitions
-                th
-                    a(href='https://vk.com/vlad_ork') VK
-        div(class="col-xs-12")
-            h2(style="text-align: center;")
+        div(class="col-xs-12 text-center")    
+            table(border= 1, class="navCompetition")
+                thead
+                    th(class="col-sm-3 text-center") 
+                        a(href="/") Main
+                    th(class="col-sm-3 text-center")
+                        a(href='/competitions') Competitions
+                    th(class="col-sm-3 text-center")
+                        a(href='https://vk.com/vlad_ork') VK
+        div(class="col-xs-12 text-center")
+            h2
                 span(class="glyphicon glyphicon glyphicon-star")
                     b(style="word-spacing: -20px;") #{competition[0].TITLE} 
                 br
                 small #{competition[0].PLACE}, #{competition[0].DATECOMPETITION}
-        table(border= 1, class="mainTable")
-            thead
-                th.topTable 
-                    a(href='/competition/#{competition[0].IDCOMPETITION}/info') Info
-                th.topTable  Applications(#{competition[0].COUNT})
-                th.topTable 
-                    a(href='/competition/#{competition[0].IDCOMPETITION}/registration') Registration
-        table(border= 1, class="mainTable")
-            thead
-                tr
-                    th(rowspan="2")
-                    th.topTable(rowspan="2") Program
-                    th.topTable(colspan="3") Registered participants
-                tr
-                    td(style="text-align: center;") Class
-                    td Type of program
-                    td Amount
-            tbody
-                tr 
-                    each index in competition.moreInformation
-                        tr
-                            td= indexRow++
-                            td #{index.CATEGORYNAME}
-                            if(index.COUNT === 0)
-                                td #{index.CLASSNAME} 
-                                td #{index.TYPEOFPROGRAM}
-                                td
-                            else
-                                td #{index.CLASSNAME} 
-                                td #{index.TYPEOFPROGRAM}
-                                td 
-                                    a(href='/competition/#{competition[0].IDCOMPETITION}/oneCategory/#{index.CATEGORYNAME}/#{index.CLASSNAME}/#{index.TYPEOFPROGRAM}') #{index.COUNT}
-//- Class - A,B,C Typeofprogram - Standart Amount - 10 
+        div(class="col-xs-12 text-center")
+            table(border= 1, class="mainTable")
+                thead
+                    th(class="col-sm-4 text-center") 
+                        a(href='/competition/#{competition[0].IDCOMPETITION}/info') Info
+                    th(class="col-sm-4 text-center")  Applications(#{competition[0].COUNT})
+                    th(class="col-sm-4 text-center") 
+                        a(href='/competition/#{competition[0].IDCOMPETITION}/registration') Registration
+        div(class="col-xs-12 text-center")
+            table(border= 1, class="mainTable")
+                thead
+                    tr
+                        th.tableFirstChildTh(rowspan="2")
+                        th.topTable(rowspan="2") Program
+                        th.topTable(colspan="3") Registered participants
+                    tr
+                        td(style="text-align: center;") Class
+                        td Type of program
+                        td Amount
+                tbody
+                    tr 
+                        each index in competition.moreInformation
+                            tr
+                                td.tableFirstChildTd= indexRow++
+                                td #{index.CATEGORYNAME}
+                                if(index.COUNT === 0)
+                                    td #{index.CLASSNAME} 
+                                    td #{index.TYPEOFPROGRAM}
+                                    td
+                                else
+                                    td #{index.CLASSNAME} 
+                                    td #{index.TYPEOFPROGRAM}
+                                    td 
+                                        a(href='/competition/#{competition[0].IDCOMPETITION}/oneCategory/#{index.CATEGORYNAME}/#{index.CLASSNAME}/#{index.TYPEOFPROGRAM}') #{index.COUNT}

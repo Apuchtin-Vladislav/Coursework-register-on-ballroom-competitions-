@@ -1,36 +1,42 @@
 extends ./../index.jade
 
 block info
-    -var amountAplications = 10;
-
-    div(class="mainContainer")
-        table(border= 1, class="navCompetition")
-            thead
-                th.navFirstElement 
-                    a(href="/") Main
-                th
-                    a(href='/competitions') Competitions
-                th
-                    a(href='https://vk.com/vlad_ork') VK
-        div(class="col-xs-12")
-            h2(style="text-align: center;")
+    div.mainContainer
+        div(class="col-xs-12 text-center")
+            table(border= 1, class="navCompetition")
+                thead
+                    th(class="col-sm-3 text-center") 
+                        a(href="/") Main
+                    th(class="col-sm-3 text-center") 
+                        a(href='/competitions') Competitions
+                    th(class="col-sm-3 text-center") 
+                        a(href='https://vk.com/vlad_ork') VK
+        div(class="col-xs-12 text-center")
+            h2
                 span(class="glyphicon glyphicon glyphicon-star")
                     b(style="word-spacing: -20px;") #{competition[0].TITLE} 
                 br
                 small #{competition[0].PLACE}, #{competition[0].DATECOMPETITION}
-        table(border= 1, class="mainTable")
-            thead
-                th.topTable Info
-                th.topTable  
-                    a(href='/competition/#{competition[0].IDCOMPETITION}/details') Applications(#{competition[0].COUNT})
-                th.topTable 
-                    a(href='/competition/#{competition[0].IDCOMPETITION}/registration') Registration
-        div.mainTable
-            p
-                strong #{competition[0].TITLE}
-            p   
-                strong #{competition[0].DATECOMPETITION}
-            p   
-                strong Place: #{competition[0].PLACE}
-            p   
-                strong Organizer: #{competition[0].ORGANIZERS}
+        div(class="col-xs-12 text-center")
+            table(border= 1, class="mainTable")
+                thead
+                    th(class="col-sm-4 text-center") Info
+                    th(class="col-sm-4 text-center")   
+                        a(href='/competition/#{competition[0].IDCOMPETITION}/details') Applications(#{competition[0].COUNT})
+                    th(class="col-sm-4 text-center")  
+                        a(href='/competition/#{competition[0].IDCOMPETITION}/registration') Registration
+        div(class="col-xs-12 text-center")    
+            table(border = 1, class="mainTable")
+                thead
+                    th.text-center Date
+                    th.text-center Title
+                    th.text-center Place
+                    th.text-center Organizers
+                    th.text-center Applications
+                each competitions in competition
+                    tbody
+                        td #{competitions.DATECOMPETITION}
+                        td #{competitions.TITLE}
+                        td #{competitions.PLACE}
+                        td #{competitions.ORGANIZERS}
+                        td #{competitions.COUNT}

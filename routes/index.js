@@ -50,16 +50,12 @@ router.get('/competition/:id/info', function (req, res, next) {
 	});
 });
 
-router.post('/competition/:id/info',function (request, response) {
-	if(!request.body) return response.sendStatus(400);
-});
 
 router.post('/competition/:id/registration/inDB/answer', urlencodedParser, function(request, response) {
 	if(!request.body) return response.sendStatus(400);
 	console.log(request.body);
 	request.body.idCompetition = request.params.id;
 	db.addCouple(request.body, function (result) {
-		console.log(result === undefined, result.length === undefined);
 
 		db.getInfoFromSingleCompetition(request.params.id, function (allInformation) {
 			result.info = allInformation[0];
@@ -73,43 +69,3 @@ router.post('/competition/:id/registration/inDB/answer', urlencodedParser, funct
 
 
 module.exports = router;
-// var getSingleTitle = function (req, res, next) {
-// 	req.getSingleTitle = db.getAllCompetitions(function (result) {
-// 		return ({competitions: result});
-// 	});
-// 	console.log(req.getSingleTitle);
-// 	next();
-// }
-
-// router.use(getSingleTitle);
-
-// var getSingleDetails = function (req, res, next) {
-// 	db.getSingleCompetition(req.params.id, function (result) {
-// 		console.log(result);
-// 		res.render('../views/allViews/competition.jade', {competition: result});  
-// 	});
-// }
-// router.get('/competition/:id/details', [getSingleTitle, getSingleDetails]);
-
-// router.get('/competition/:id/details', function (req, res, next) {
-// 	db.getSingleCompetition(req.params.id, function (result) {
-// 		console.log(result);
-// 		res.render('../views/allViews/competition.jade', {competition: result});  
-// 	});
-// });
-
-// var cb0 = function (req, res, next) {
-//   console.log('CB0');
-//   next();
-// }
-
-// var cb1 = function (req, res, next) {
-//   console.log('CB1');
-//   next();
-// }
-
-// var cb2 = function (req, res) {
-//   res.send('Hello from C!');
-// }
-
-// router.get('/example/c', [cb0, cb1, cb2]);
