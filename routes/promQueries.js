@@ -187,7 +187,8 @@ addNewHuman = (req, callback) => {
 		});
 } 
 
-
+//answer таблица ввиде как в info, что бы был виден ID партнера
+//в registration сделать виден ID
 module.exports = {
 	addNewHuman: addNewHuman
 }

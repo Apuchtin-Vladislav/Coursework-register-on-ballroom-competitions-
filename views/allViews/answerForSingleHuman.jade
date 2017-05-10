@@ -1,6 +1,7 @@
 extends ./../index.jade
 
-block answer
+block answerForSingleHuman
+    
     div.mainContainer
         div(class="col-xs-12 text-center")
             table(border= 1, class="navCompetition")
@@ -34,9 +35,9 @@ block answer
                             span(class="glyphicon glyphicon-chevron-left")
                     div(class="col-xs-12" style="margin-left: -1%;")
                         if answer.length === undefined
-                            h3(class='alert alert-danger') This couple already exist!
+                            h3(class='alert alert-danger') This person already exist!
                         else
-                            h3(class="alert alert-success") Registration of this couple is successful!
+                            h3(class="alert alert-success") Registration of this person is successful!
                     div(class="col-xs-1")
                     div(class="col-xs-3")
         div(class="col-xs-12")
