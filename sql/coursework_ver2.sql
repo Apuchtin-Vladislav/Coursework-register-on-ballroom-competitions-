@@ -59,7 +59,7 @@ create table Coaches
    Country              VARCHAR(32),
    nameCoach            VARCHAR(32) not null,
    surnameCoach         VARCHAR(32) not null,
-   patronymicCoaches VARCHAR(32),
+   patronymicCoaches    VARCHAR(32),
    codeCoach            INTEGER not null,
    primary key (surnameCoach, nameCoach, codeCoach)
 );
@@ -699,9 +699,15 @@ where Competitions.idCompetition = 1
 group by Categories.CategoryID, Classes.ClassID, BallroomPrograms.idProgram;
 
 -- couple
-select * 
-from Couples, Competitions
-where Couples.PairNumber = 1 and Competitions.IdCompetition = 1;
+select * from Couples where PairNumber = 1
+and IDCOMPETITION = 1 and IDPROGRAM = 2
+and CATEGORYID = 3 and CLASSID = 3;
+
+--partner
+select namePartner, surnamePartner, Country
+from Partners
+where namePartner='Vladislav'and surnamePartner='Apukhtin' and Country='Ukraine'; 
+
 -- select Categories.CategoryName, BallroomPrograms.typeOfProgram
 -- from Categories, BallroomPrograms
 -- where Categories.IdCompetition = 1 and BallroomPrograms.idcompetition = 1 

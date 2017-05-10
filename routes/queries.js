@@ -1,6 +1,6 @@
-var Firebird = require('node-firebird');
+const Firebird = require('node-firebird');
 
-var options = {
+const options = {
 	database: 'D:/Pars/3 course/2 semester/DataBase/Coursework/git_Coursework/public/bd/COURSEWORK_VER2.FDB',
 	port: 3050,
 	user: 'SYSDBA',
@@ -32,10 +32,18 @@ function extendArray (array1, array2) {
 
 /*------------------------------ CONNECT/DISCONNECT -------------------------------*/
 
-// connectToDB = function (request) {
-// 	console.log(request);
+// connectToDB = dboptions => {
+// 	const def = bluebirdPromise.defer();
+
+//     db.attach(dboptions,
+// 		(err, db) => {
+//         	err ? def.reject(err) : def.resolve(db);
+//       	}
+//     );
+//     return def.promise;	
 // }
-disconnectFromDB = function() {
+
+disconnectFromDB = () => {
 	console.log('DATABASE DETACHED');
 };
 

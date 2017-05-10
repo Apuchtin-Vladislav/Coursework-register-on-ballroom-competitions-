@@ -37,8 +37,8 @@ block registration
             div(class="row")    
                 div(class="col-xs-6")
                     a(href='/competition/#{registration[0].IDCOMPETITION}/registration/inDB' type="button" class="btn btn-primary btn-md")
-                     b In Base Data
+                     b In Data Base 
                 div(class="col-xs-6")
-                    a(type="button" class="btn btn-primary btn-md" disabled)
+                    a(href='/competition/#{registration[0].IDCOMPETITION}/registration/notInDB' type="button" class="btn btn-primary btn-md")
                      b Not in Data Base
     
