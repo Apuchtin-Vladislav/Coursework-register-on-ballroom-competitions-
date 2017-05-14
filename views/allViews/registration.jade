@@ -1,36 +1,41 @@
 extends ./../index.jade
 
 block registration
-    div(class="mainContainer")
-        table(border= 1, class="navCompetition")
-            thead
-                th.navFirstElement 
-                    a(href="/") Main
-                th
-                    a(href='/competitions') Competitions
-                th
-                    a(href='https://vk.com/vlad_ork') VK
-        div(class="col-xs-12")
-            h2(style="text-align: center;")
+    div.mainContainer
+        div(class="col-xs-12 text-center")
+            table(border= 1, class="navCompetition")
+                thead
+                    th(class="col-sm-3 text-center") 
+                        a(href="/") Main
+                    th(class="col-sm-3 text-center") 
+                        a(href='/competitions') Competitions
+                    th(class="col-sm-3 text-center") 
+                        a(href='https://vk.com/vlad_ork') VK
+        div(class="col-xs-12 text-center")
+            h2
                 span(class="glyphicon glyphicon glyphicon-star")
                     b(style="word-spacing: -20px;") #{registration[0].TITLE} 
                 br
                 small #{registration[0].PLACE}, #{registration[0].DATECOMPETITION}
-        table(border= 1, class="mainTable")
-            thead
-                th.topTable
-                    a(href='/competition/#{registration[0].IDCOMPETITION}/info') Info
-                th.topTable  
-                    a(href='/competition/#{registration[0].IDCOMPETITION}/details') Applications(#{registration[0].COUNT})
-                th.topTable Registration
-        div(class="col-xs-12")
-            h4(style="text-align: center;")
-                b Choose department
-            div(class="row" style="text-align: center;")    
-                div(class="col-xs-6")
-                    a(href='/competition/#{registration[0].IDCOMPETITION}/registration/inBD')
-                     b In Base Data
-                div(class="col-xs-6")
-                    a 
-                     b(disabled) Not in Base Data
+        div(class="col-xs-12 text-center")
+            table(border= 1, class="mainTable")
+                thead
+                    th(class="col-sm-4 text-center") 
+                        a(href='/competition/#{registration[0].IDCOMPETITION}/info') Info
+                    th(class="col-sm-4 text-center")   
+                        a(href='/competition/#{registration[0].IDCOMPETITION}/details') Applications(#{registration[0].COUNT})
+                    th(class="col-sm-4 text-center") Registration
+        div(class="col-xs-12 text-center")
+            table(border= 1, class="mainTable")
+                thead
+                    th(class="col-xs-12 text-center" colspan="2")
+                        h4
+                            strong Choose department
+                tbody
+                    td(class="col-xs-6 text-center")
+                        a(href='/competition/#{registration[0].IDCOMPETITION}/registration/inDB' type="button")
+                            b In Data Base 
+                    td(class="col-xs-6 text-center")
+                        a(href='/competition/#{registration[0].IDCOMPETITION}/registration/notInDB' type="button")
+                            b Not in Data Base
     

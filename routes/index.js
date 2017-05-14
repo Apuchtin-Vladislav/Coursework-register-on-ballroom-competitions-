@@ -3,6 +3,7 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var db = require('./queries.js');
+const fdb = require('./promQueries.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,8 +26,6 @@ router.get('/competition/:id/details', function (req, res, next) {
 
 router.get('/competition/:id/oneCategory/:category/:class/:program', function (req, res, next) {
 	db.getInfoSingleCategory(req.params, function (result) {
-		// console.log(result);
-		// console.log(result.idCompetition);
 		res.render('../views/allViews/oneCategory.jade', {infoSingleCategory: result});
 	});
 });
@@ -37,10 +36,15 @@ router.get('/competition/:id/registration', function (req, res, next) {
 	});
 });
 
-router.get('/competition/:id/registration/inBD', function (req, res, next) {
-	db.getInformationFromBD(req.params.id, function (result) {
-		console.log(result); 
-		res.render('../views/allViews/inBD.jade', {inBD: result});
+router.get('/competition/:id/registration/inDB', function (req, res, next) {
+	db.getInformationFromDB(req.params.id, function (result) {
+		res.render('../views/allViews/inDB.jade', {inDB: result});
+	});
+});
+
+router.get('/competition/:id/registration/notInDB', function (req, res, next) {
+	db.getInformationFromDB(req.params.id, function (result) {
+		res.render('../views/allViews/notInDB.jade', {notInDB: result});
 	});
 });
 
@@ -50,56 +54,44 @@ router.get('/competition/:id/info', function (req, res, next) {
 	});
 });
 
-router.post('/competition/:id/info',function (request, response) {
+
+router.post('/competition/:id/registration/inDB/answer', urlencodedParser, function(request, response) {
 	if(!request.body) return response.sendStatus(400);
+	console.log(request.body);
+	request.body.idCompetition = request.params.id;
+	db.addCouple(request.body, function (result) {
+
+		db.getInfoFromSingleCompetition(request.params.id, function (allInformation) {
+			result.info = allInformation[0];
+			console.log(result);
+
+			response.render('../views/allViews/answer.jade', {answer: result});
+		});
+	});
 });
 
-router.post('/competition/:id/registration/inBD/answer', urlencodedParser, function (request, response) {
+router.post('/competition/:id/registration/notInDB/answer', urlencodedParser, function(request, response) {
 	if(!request.body) return response.sendStatus(400);
-	console.log(request.body);  
-	response.send(request.body);
+	//request.body.idCompetition = request.params.id;
+	fdb.addNewHuman(request.body, (result) => {
+		db.getInfoFromSingleCompetition(request.params.id, function (allInformation) {
+			result.info = allInformation[0];
+			console.log(result);
+
+			response.render('../views/allViews/answerForSingleHuman.jade', {answer: result});
+		});
+	});
+	// db.addCouple(request.body, function (result) {
+
+	// 	db.getInfoFromSingleCompetition(request.params.id, function (allInformation) {
+	// 		result.info = allInformation[0];
+	// 		console.log(result);
+
+	// 		response.render('../views/allViews/answer.jade', {answer: result});
+	// 	});
+	// });
 });
 
 
 
 module.exports = router;
-// var getSingleTitle = function (req, res, next) {
-// 	req.getSingleTitle = db.getAllCompetitions(function (result) {
-// 		return ({competitions: result});
-// 	});
-// 	console.log(req.getSingleTitle);
-// 	next();
-// }
-
-// router.use(getSingleTitle);
-
-// var getSingleDetails = function (req, res, next) {
-// 	db.getSingleCompetition(req.params.id, function (result) {
-// 		console.log(result);
-// 		res.render('../views/allViews/competition.jade', {competition: result});  
-// 	});
-// }
-// router.get('/competition/:id/details', [getSingleTitle, getSingleDetails]);
-
-// router.get('/competition/:id/details', function (req, res, next) {
-// 	db.getSingleCompetition(req.params.id, function (result) {
-// 		console.log(result);
-// 		res.render('../views/allViews/competition.jade', {competition: result});  
-// 	});
-// });
-
-// var cb0 = function (req, res, next) {
-//   console.log('CB0');
-//   next();
-// }
-
-// var cb1 = function (req, res, next) {
-//   console.log('CB1');
-//   next();
-// }
-
-// var cb2 = function (req, res) {
-//   res.send('Hello from C!');
-// }
-
-// router.get('/example/c', [cb0, cb1, cb2]);

@@ -1,0 +1,136 @@
+extends ./../index.jade
+
+block notInDB
+    div.mainContainer
+        div(class="col-xs-12 text-center")
+            table(border= 1, class="navCompetition")
+                thead
+                    th(class="col-sm-3 text-center") 
+                        a(href="/") Main
+                    th(class="col-sm-3 text-center") 
+                        a(href='/competitions') Competitions
+                    th(class="col-sm-3 text-center") 
+                        a(href='https://vk.com/vlad_ork') VK
+        div(class="col-xs-12 text-center")
+            h2
+                span(class="glyphicon glyphicon glyphicon-star")
+                    b(style="word-spacing: -20px;") #{notInDB[0].TITLE} 
+                br
+                small #{notInDB[0].PLACE}, #{notInDB[0].DATECOMPETITION}
+        div(class="col-xs-12 text-center")
+            table(border= 1, class="mainTable")
+                thead
+                    th(class="col-sm-4 text-center") 
+                        a(href='/competition/#{notInDB[0].IDCOMPETITION}/info') Info
+                    th(class="col-sm-4 text-center")   
+                        a(href='/competition/#{notInDB[0].IDCOMPETITION}/details') Applications(#{notInDB[0].COUNT})
+                    th(class="col-sm-4 text-center") 
+                        a(href='/competition/#{notInDB[0].IDCOMPETITION}/registration') Registration
+        h2(class="col-xs-12 text-center") Choose, whom, do you want registered.
+        div(class="col-xs-12")
+            table(border= 1, class="mainTable")
+                thead
+                    th(id="clickPartner" class="col-sm-4 text-center cursor") Partner
+                    th(id="clickShepartner" class="col-sm-4 text-center cursor") Shepartner
+                    th(id="clickCoach" class="col-sm-4 text-center cursor") Choach
+        div(class="col-xs-12")
+            div(class="col-xs-4 regDivRight")
+                form(id='regFormPartner' class="form-horizontal" name='form_info' 
+                    action="/competition/#{notInDB[0].IDCOMPETITION}/registration/notInDB/answer" method="post")
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Name
+                        input(id="namePartner", type="text", class="inputHeight form-control", name="namePartner", placeholder="Input name partner", maxlength="31", pattern="^[-a-zA-Z\u0410-\u044F`]+$", required)
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Surname
+                        input(id="surnamePartner" type="text" class="form-control inputHeight" name="surnamePartner" placeholder="Input surname partner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Patronymic
+                        input(id="patronymicPartner" type="text" class="form-control inputHeight" name="patronymicPartner" placeholder="Input patronymic partner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$")
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Country
+                        input(id="countryPartner" type="text" class="form-control inputHeight" name="countryPartner" placeholder="Input country partner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
+                    br
+                    button(id='couple', type="submit", class="btn btn-success", style="float: left;") Submit
+            div(class="col-xs-4 regDivRight")
+                form(id='regFormShepartner' class="form-horizontal" name='form_info' 
+                    action="/competition/#{notInDB[0].IDCOMPETITION}/registration/notInDB/answer" method="post")
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Name
+                        input(id="nameShepartner" type="text" class="inputHeight form-control" name="nameShepartner" placeholder="Input name shepartner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Surname
+                        input(id="surnameShepartner" type="text" class="form-control inputHeight" name="surnameShepartner" placeholder="Input surname shepartner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Patronymic
+                        input(id="patronymicShepartner" type="text" class="form-control inputHeight" name="patronymicShepartner" placeholder="Input patronymic shepartner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" )
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Country
+                        input(id="countryShepartner" type="text" class="form-control inputHeight" name="countryShepartner" placeholder="Input country shepartner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
+                    br
+                    button(id='couple', type="submit", class="btn btn-success", style="float: left;") Submit
+    
+            div(class="col-xs-4 regDivRight")
+                form(id='regFormChoach' class="form-horizontal" name='form_info' 
+                    action="/competition/#{notInDB[0].IDCOMPETITION}/registration/notInDB/answer" method="post")
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Name
+                        input(id="nameCoach" type="text" class="inputHeight form-control" name="nameCoach" placeholder="Input name coach" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Surname
+                        input(id="surnameCoach" type="text" class="form-control inputHeight" name="surnameCoach" placeholder="Input surname coach" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Patronymic
+                        input(id="patronymicCoach" type="text" class="form-control inputHeight" name="patronymicCoach" placeholder="Input patronymic coach" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$")
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Country
+                        input(id="countryCoach" type="text" class="form-control inputHeight" name="countryCoach" placeholder="Input country coach" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
+                    br
+                    button(id='couple', type="submit", class="btn btn-success", style="float: left;") Submit
+    script.
+        const formPartner = $('#clickPartner');
+        const formShepartner = $('#clickShepartner');
+        const formCoach = $('#clickCoach');
+        const regFormPartner = $('#regFormPartner');
+        const regFormShepartner = $('#regFormShepartner');
+        const regFormChoach = $('#regFormChoach');
+        const tbody = $('#tableBody');
+        
+        //- $('input').change(event => {
+        //-     const oneInput = event.target.value;
+
+        //-     console.log(regoneInput);
+        //- });
+
+        tbody.hide();
+        regFormPartner.hide();
+        regFormShepartner.hide();
+        regFormChoach.hide();
+        formPartner.bind('click', () => {
+            //regFormPartner.css("display") === 'none' ?
+            tbody.show();
+            regFormPartner.show();
+            regFormShepartner.hide();
+            regFormChoach.hide();
+        });
+        formShepartner.bind('click', () => {
+            tbody.show();
+            regFormPartner.hide();
+            regFormShepartner.show();
+            regFormChoach.hide();
+        });
+        formCoach.bind('click', () => {
+            tbody.show();
+            regFormPartner.hide();
+            regFormShepartner.hide();
+            regFormChoach.show();
+        });
+
