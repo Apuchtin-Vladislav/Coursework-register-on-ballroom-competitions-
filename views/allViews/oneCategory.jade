@@ -39,15 +39,15 @@ block oneCategory
         div(class="col-xs-12 text-center")
             table(border=1, class="mainTable")
                 thead
-                    tr
-                        th.topTable Class
-                        th.topTable Category
-                        th.topTable Couple
-                        th.topTable Country
+                    tr  
+                        th.text-center Class
+                        th.text-center Category
+                        th.text-center Couple
+                        th.text-center Country
                 each index in infoSingleCategory
                     tbody
-                        tr
-                            td(style="text-align: center;") #{index.CLASSNAME}
+                        tr 
+                            td #{index.CLASSNAME}
                             td #{index.CATEGORYNAME}
                             td
                                 a #{index.SURNAMEPARTNER} #{index.NAMEPARTNER} - 

@@ -588,6 +588,37 @@ INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, 
 --    VALUES (3, 2, 'Latin');
 
 
+select Competitions.IdCompetition, Competitions.Title, 
+   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
+      Competitions.Organizers, Competitions.Country, count(Couples.codePartner)
+from Competitions 
+   INNER JOIN BallroomPrograms 
+      ON Competitions.idCompetition = BallroomPrograms.idCompetition
+   INNER JOIN Categories 
+      ON BallroomPrograms.idCompetition = Categories.idCompetition
+   INNER JOIN consistClass
+      ON Categories.idCompetition = consistClass.idCompetition
+         and Categories.idProgram = consistClass.idProgram
+            and Categories.CategoryID = consistClass.CategoryID
+   INNER JOIN Classes
+      ON consistClass.ClassID = Classes.ClassID
+         and BallroomPrograms.idProgram = Categories.idProgram
+   LEFT JOIN Couples
+      ON Categories.idCompetition = Couples.idCompetition
+         and Categories.idProgram = Couples.idProgram
+            and Categories.CategoryID = Couples.CategoryID
+               and Couples.ClassID = Classes.ClassID
+group by Competitions.IdCompetition, Competitions.Title, 
+   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
+      Competitions.Organizers, Competitions.Country;
+
+select Competitions.IdCompetition, Competitions.Title, 
+   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
+      Competitions.Organizers, Competitions.Country, count(Couples.codePartner)
+from Competitions, Couples
+group by Competitions.IdCompetition, Competitions.Title, 
+   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
+      Competitions.Organizers, Competitions.Country;
 
 select Couples.PairNumber,  Couples.surnamePartner, Couples.namePartner, Partners.Country,
    Couples.surnameShepartner, Couples.nameShepartner, Shepartners.Country
@@ -707,6 +738,16 @@ and CATEGORYID = 3 and CLASSID = 3;
 select namePartner, surnamePartner, Country
 from Partners
 where namePartner='Vladislav'and surnamePartner='Apukhtin' and Country='Ukraine'; 
+--check empty index
+   select codePartner
+   from Partners;
+
+--insert
+-- INSERT INTO Partners (codePartner, namePartner, surnamePartner, Country, patronymic)
+--    VALUES (21, 'Riccardo', 'Cocchi', 'Itali', null);
+--delete
+DELETE FROM Partners
+WHERE namePartner='Vlad' and surnamePartner='Bitetto' and Country='Ukraine';
 
 -- select Categories.CategoryName, BallroomPrograms.typeOfProgram
 -- from Categories, BallroomPrograms

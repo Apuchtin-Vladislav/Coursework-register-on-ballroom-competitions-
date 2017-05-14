@@ -40,11 +40,56 @@ block answer
                     div(class="col-xs-1")
                     div(class="col-xs-3")
         div(class="col-xs-12")
+            -let n = 0;
             if answer.length != undefined
                 table(border = 1, class="mainTable")
                     thead 
                         each val, index in answer[0]
-                            th(class='text-center' style='font-size: 10px;') #{index}
+                            -n++;
+                            if n < 5
+                                th(class='text-center' style='font-size: 10px;') #{index}
                         tbody
+                            -n=0;
                             for key in answer[0]
-                                td.text-center #{key}
+                                -n++;
+                                if n < 5
+                                    td.text-center #{key}
+                table(border = 1, class="mainTable")
+                    thead
+                        -n=0; 
+                        each val, index in answer[0]
+                            -n++;
+                            if n >= 5 && n <= 8
+                                th(class='text-center' style='font-size: 10px;') #{index}
+                        tbody
+                            -n=0;
+                            for key in answer[0]
+                                -n++;
+                                if n >= 5 && n <= 8
+                                    td.text-center #{key}
+                table(border = 1, class="mainTable")
+                    thead
+                        -n=0; 
+                        each val, index in answer[0]
+                            -n++;
+                            if n > 8 && n <= 12
+                                th(class='text-center' style='font-size: 10px;') #{index}
+                        tbody
+                            -n=0;
+                            for key in answer[0]
+                                -n++;
+                                if n > 8 && n <= 12
+                                    td.text-center #{key}
+                table(border = 1, class="mainTable")
+                    thead
+                        -n=0; 
+                        each val, index in answer[0]
+                            -n++;
+                            if n > 12
+                                th(class='text-center' style='font-size: 10px;') #{index}
+                        tbody
+                            -n=0;
+                            for key in answer[0]
+                                -n++;
+                                if n > 12
+                                    td.text-center #{key}

@@ -1,7 +1,7 @@
 const Firebird = require('node-firebird');
 
 const options = {
-	database: 'D:/Pars/3 course/2 semester/DataBase/Coursework/git_Coursework/public/bd/COURSEWORK_VER2.FDB',
+	database: 'D:/Pars/3 course/2 semester/DataBase/Coursework/git_Coursework/public/bd/COURSEWORK_VER3.FDB',
 	port: 3050,
 	user: 'SYSDBA',
 	password: 'masterkey',
@@ -32,17 +32,6 @@ function extendArray (array1, array2) {
 
 /*------------------------------ CONNECT/DISCONNECT -------------------------------*/
 
-// connectToDB = dboptions => {
-// 	const def = bluebirdPromise.defer();
-
-//     db.attach(dboptions,
-// 		(err, db) => {
-//         	err ? def.reject(err) : def.resolve(db);
-//       	}
-//     );
-//     return def.promise;	
-// }
-
 disconnectFromDB = () => {
 	console.log('DATABASE DETACHED');
 };
@@ -57,13 +46,29 @@ function getAllCompetitions (callback) {
 		} else {
 			console.log("DATABASE (getAllCompetitions) CONNECTED");
 			db.query(`
-					select Competitions.IdCompetition, Competitions.Title, 
-					   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
-					      Competitions.Organizers, Competitions.Country, count(Couples.codePartner)
-					from Competitions, Couples
-					group by Competitions.IdCompetition, Competitions.Title, 
-					   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
-					      Competitions.Organizers, Competitions.Country;
+				select Competitions.IdCompetition, Competitions.Title, 
+				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
+				      Competitions.Organizers, Competitions.Country, count(Couples.PairNumber)
+				from Competitions 
+				   INNER JOIN BallroomPrograms 
+				      ON Competitions.idCompetition = BallroomPrograms.idCompetition
+				   INNER JOIN Categories 
+				      ON BallroomPrograms.idCompetition = Categories.idCompetition
+				   INNER JOIN consistClass
+				      ON Categories.idCompetition = consistClass.idCompetition
+				         and Categories.idProgram = consistClass.idProgram
+				            and Categories.CategoryID = consistClass.CategoryID
+				   INNER JOIN Classes
+				      ON consistClass.ClassID = Classes.ClassID
+				         and BallroomPrograms.idProgram = Categories.idProgram
+				   LEFT JOIN Couples
+				      ON Categories.idCompetition = Couples.idCompetition
+				         and Categories.idProgram = Couples.idProgram
+				            and Categories.CategoryID = Couples.CategoryID
+				               and Couples.ClassID = Classes.ClassID
+				group by Competitions.IdCompetition, Competitions.Title, 
+				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
+				      Competitions.Organizers, Competitions.Country;
 				`, function(err, result) {
 				if (err) {
 					console.log(err);
@@ -89,8 +94,24 @@ function getSingleCompetition (req, callback) {
 			db.query(`
 				select Competitions.IdCompetition, Competitions.Title, 
 				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
-				      Competitions.Organizers, Competitions.Country, count(Couples.codePartner)
-				from Competitions, Couples
+				      Competitions.Organizers, Competitions.Country, count(Couples.PairNumber)
+				from Competitions 
+				   INNER JOIN BallroomPrograms 
+				      ON Competitions.idCompetition = BallroomPrograms.idCompetition
+				   INNER JOIN Categories 
+				      ON BallroomPrograms.idCompetition = Categories.idCompetition
+				   INNER JOIN consistClass
+				      ON Categories.idCompetition = consistClass.idCompetition
+				         and Categories.idProgram = consistClass.idProgram
+				            and Categories.CategoryID = consistClass.CategoryID
+				   INNER JOIN Classes
+				      ON consistClass.ClassID = Classes.ClassID
+				         and BallroomPrograms.idProgram = Categories.idProgram
+				   LEFT JOIN Couples
+				      ON Categories.idCompetition = Couples.idCompetition
+				         and Categories.idProgram = Couples.idProgram
+				            and Categories.CategoryID = Couples.CategoryID
+				               and Couples.ClassID = Classes.ClassID
 				where Competitions.IdCompetition =?
 				group by Competitions.IdCompetition, Competitions.Title, 
 				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
@@ -194,8 +215,24 @@ function getInformationFromDB (req, callback) {
 			db.query(`
 				select Competitions.IdCompetition, Competitions.Title, 
 				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
-				      Competitions.Organizers, Competitions.Country, count(Couples.codePartner)
-				from Competitions, Couples
+				      Competitions.Organizers, Competitions.Country, count(Couples.PairNumber)
+				from Competitions 
+				   INNER JOIN BallroomPrograms 
+				      ON Competitions.idCompetition = BallroomPrograms.idCompetition
+				   INNER JOIN Categories 
+				      ON BallroomPrograms.idCompetition = Categories.idCompetition
+				   INNER JOIN consistClass
+				      ON Categories.idCompetition = consistClass.idCompetition
+				         and Categories.idProgram = consistClass.idProgram
+				            and Categories.CategoryID = consistClass.CategoryID
+				   INNER JOIN Classes
+				      ON consistClass.ClassID = Classes.ClassID
+				         and BallroomPrograms.idProgram = Categories.idProgram
+				   LEFT JOIN Couples
+				      ON Categories.idCompetition = Couples.idCompetition
+				         and Categories.idProgram = Couples.idProgram
+				            and Categories.CategoryID = Couples.CategoryID
+				               and Couples.ClassID = Classes.ClassID
 				where Competitions.IdCompetition =?
 				group by Competitions.IdCompetition, Competitions.Title, 
 				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
@@ -283,19 +320,6 @@ function addCouple (req, callback) {
 			throw err;
 		} else {
 			console.log("DATABASE (addCouple) CONNECTED");
-			// var ob = {};
-			// function goToDB (select, req_param, name) {
-			// 	db.query(select, [req_param], function(err, result) {
-			// 		if (err) {
-			// 			console.log(err);
-			// 			db.detach(disconnectFromDB());
-			// 		} else {
-			// 			db.detach(disconnectFromDB());
-			// 			ob[name] = result[0];					}
-			// 	}); 
-			// }
-			// // goToDB(`select * from Partners where codePartner =?`, req.Partner, 'partner');
-			// console.log(goToDB(`select * from Partners where codePartner =?`, req.Partner, 'partner'));
 			var input = req.Class.split("_");
             var values = new Array();
             for(i in input) {
@@ -361,8 +385,8 @@ function addCouple (req, callback) {
 																		couple.shepartner.NAMESHEPARTNER,
 																		couple.shepartner.CODESHEPARTNER]);
 											db.query(`
-												INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, 
-													PairNumber, surnameCoach, nameCoach, codeCoach, surnamePartner,
+												INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, pairNumber, 
+													surnameCoach, nameCoach, codeCoach, surnamePartner,
 													namePartner, codePartner, surnameShepartner, nameShepartner, codeShePartner) 
 												VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 												`, [couple.idCompetition, couple.classCouple.IDPROGRAM,
@@ -381,8 +405,8 @@ function addCouple (req, callback) {
 													db.detach(disconnectFromDB());
 												} else {
 											        db.query(`
-											        	select * from Couples where PAIRNUMBER =?;
-											        	`, [couple.PAIRNUMBER], function(err, result) {
+											        	select * from Couples where PAIRNUMBER =? and idCompetition =?;
+											        	`, [couple.PAIRNUMBER, couple.idCompetition], function(err, result) {
 											        	if (err) {
 															console.log(err);
 															db.detach(disconnectFromDB());
@@ -416,8 +440,24 @@ function getInfoFromSingleCompetition (req, callback) {
 			db.query(`
 				select Competitions.IdCompetition, Competitions.Title, 
 				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
-				      Competitions.Organizers, Competitions.Country, count(Couples.codePartner)
-				from Competitions, Couples
+				      Competitions.Organizers, Competitions.Country, count(Couples.PairNumber)
+				from Competitions 
+				   INNER JOIN BallroomPrograms 
+				      ON Competitions.idCompetition = BallroomPrograms.idCompetition
+				   INNER JOIN Categories 
+				      ON BallroomPrograms.idCompetition = Categories.idCompetition
+				   INNER JOIN consistClass
+				      ON Categories.idCompetition = consistClass.idCompetition
+				         and Categories.idProgram = consistClass.idProgram
+				            and Categories.CategoryID = consistClass.CategoryID
+				   INNER JOIN Classes
+				      ON consistClass.ClassID = Classes.ClassID
+				         and BallroomPrograms.idProgram = Categories.idProgram
+				   LEFT JOIN Couples
+				      ON Categories.idCompetition = Couples.idCompetition
+				         and Categories.idProgram = Couples.idProgram
+				            and Categories.CategoryID = Couples.CategoryID
+				               and Couples.ClassID = Classes.ClassID
 				where Competitions.IdCompetition =?
 				group by Competitions.IdCompetition, Competitions.Title, 
 				   Competitions.DateCompetition, Competitions.Place, Competitions.Rules, 
