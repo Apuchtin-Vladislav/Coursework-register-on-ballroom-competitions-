@@ -133,7 +133,7 @@ create table Couples
    IdProgram            INTEGER not null,
    CategoryID           INTEGER not null,
    PairNumber           INTEGER not null,
-   codePartner          VARCHAR(32) not null,
+   codePartner          INTEGER not null,
    namePartner          VARCHAR(32) not null,
    surnamePartner       VARCHAR(32) not null,
    surnameShepartner    VARCHAR(32) not null,
@@ -165,7 +165,7 @@ create table Partners
    namePartner          VARCHAR(32) not null,
    surnamePartner       VARCHAR(32) not null,
    patronymic           VARCHAR(32),
-   codePartner          VARCHAR(32) not null,
+   codePartner          INTEGER not null,
    primary key (codePartner, namePartner, surnamePartner)
 );
 
@@ -386,46 +386,46 @@ INSERT INTO Coaches (surnameCoach, nameCoach, patronymicCoaches, Country)
 INSERT INTO Coaches (surnameCoach, nameCoach, patronymicCoaches, Country)
    VALUES ('Kavzinadze', 'Nino', null, 'Georgia');
 
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (1, 'Dikyi', 'Igor', null, 'Ukraine');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (2, 'Pasazkaya', 'Polina', null, 'Ukraine');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (3, 'Frolova', 'Vera', null, 'Ukraine');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (4, 'Frolov', 'Valentin', null, 'Ukraine');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (5, 'Boev', 'Igor', null, 'Hong Kong');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (6, 'Prohorenko', 'Yura', null, 'Ukraine');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (7, 'Golovashenko', 'Igor', null, 'Ukraine');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (8, 'Tkachenko', 'Artem', null, 'Ukraine');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (9, 'Tkachenko', 'Anna', null, 'Ukraine');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (10, 'Fujii', 'Masaaki', null, 'Japan');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (11, 'Horacek', 'Petr', null, 'Slovakia');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (12, 'Juul', 'Kevin', null, 'Republic of South Africa');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (13, 'Sandor', 'Zoltan', null, 'Hungary');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (14, 'Rusu', 'Alexandru', null, 'Romania');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (15, 'Bodini', 'Luigi', null, 'Itali');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (16, 'Milicija', 'Sergej', null, 'Bosna i Hercegovina');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (17, 'Novak', 'Daniela', null, 'Slovenia');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (18, 'Ashrafov', 'Azar', null, 'Azerbaijan');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (19, 'Smirnova', 'Galina', null, 'Poland');
-INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
-   VALUES (20, 'Kavzinadze', 'Nino', null, 'Georgia');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Dikyi', 'Igor', null, 'Ukraine');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Pasazkaya', 'Polina', null, 'Ukraine');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Frolova', 'Vera', null, 'Ukraine');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Frolov', 'Valentin', null, 'Ukraine');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Boev', 'Igor', null, 'Hong Kong');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Prohorenko', 'Yura', null, 'Ukraine');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Golovashenko', 'Igor', null, 'Ukraine');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Tkachenko', 'Artem', null, 'Ukraine');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Tkachenko', 'Anna', null, 'Ukraine');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Fujii', 'Masaaki', null, 'Japan');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Horacek', 'Petr', null, 'Slovakia');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Juul', 'Kevin', null, 'Republic of South Africa');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Sandor', 'Zoltan', null, 'Hungary');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Rusu', 'Alexandru', null, 'Romania');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Bodini', 'Luigi', null, 'Itali');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Milicija', 'Sergej', null, 'Bosna i Hercegovina');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Novak', 'Daniela', null, 'Slovenia');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Ashrafov', 'Azar', null, 'Azerbaijan');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Smirnova', 'Galina', null, 'Poland');
+INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
+   VALUES ('Kavzinadze', 'Nino', null, 'Georgia');
 
 -- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
 --    VALUES (1, 1, 'Dikyi', 'Igor');
@@ -468,171 +468,171 @@ INSERT INTO Adjudicators (codeAdjudicator, surnameAdjudicator, nameAdjudicator, 
 -- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
 --    VALUES (1, 20, 'Kavzinadze', 'Nino');
 
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (1, 'Apukhtin', 'Vladislav', 'Ukraine', 'Sergiyovich');
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (2, 'Poddubny', 'Denis', 'Ukraine', 'Stanislavovich');
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (3, 'Khandus', 'Vladislav', 'Ukraine', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (4, 'Ishchenko', 'Artem', 'Ukraine', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (5, 'Bitetto', 'Alessio', 'Itali', null);
-INSERT INTO Partners (codePartner, namePartner, surnamePartner, Country, patronymic)
-   VALUES (6, 'Bures', 'Marek', 'Czech Republic', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (7, 'Cecinati', 'Mario', 'Italy', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (8, 'Choma', 'Karol', 'Poland', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (9, 'Cicchitti', 'Matteo', 'Slovakia', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (10, 'Cseke', 'Zsolt-Sandor', 'Germany', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (11, 'Denes', 'Ferenc-Szalai', 'Budapest', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (12, 'Doga', 'Dumitru', 'Germany', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (13, 'Esposito', 'Francesco', 'Itali', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (14, 'Fabik', 'Anton', 'Slovakia', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (15, 'Kasprzak', 'Konstanty', 'Poland', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (16, 'Khodenko', 'Alexandr', 'Russia', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (17, 'Maidaniuk', 'Mihail', 'Belorus', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (18, 'Mugerman', 'Alon', 'Israel', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (19, 'Rednic', 'Paul', 'Romania', null);
-INSERT INTO Partners (codePartner, surnamePartner, namePartner, Country, patronymic)
-   VALUES (20, 'Szkutnik', 'Bartlomiej', 'Poland', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Apukhtin', 'Vladislav', 'Ukraine', 'Sergiyovich');
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Poddubny', 'Denis', 'Ukraine', 'Stanislavovich');
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Khandus', 'Vladislav', 'Ukraine', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Ishchenko', 'Artem', 'Ukraine', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Bitetto', 'Alessio', 'Itali', null);
+INSERT INTO Partners (namePartner, surnamePartner, Country, patronymic)
+   VALUES ('Bures', 'Marek', 'Czech Republic', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Cecinati', 'Mario', 'Italy', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Choma', 'Karol', 'Poland', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Cicchitti', 'Matteo', 'Slovakia', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Cseke', 'Zsolt-Sandor', 'Germany', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Denes', 'Ferenc-Szalai', 'Budapest', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Doga', 'Dumitru', 'Germany', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Esposito', 'Francesco', 'Itali', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Fabik', 'Anton', 'Slovakia', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Kasprzak', 'Konstanty', 'Poland', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Khodenko', 'Alexandr', 'Russia', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Maidaniuk', 'Mihail', 'Belorus', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Mugerman', 'Alon', 'Israel', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Rednic', 'Paul', 'Romania', null);
+INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
+   VALUES ('Szkutnik', 'Bartlomiej', 'Poland', null);
 
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (1, 'Teterina', 'Anastasiia', 'Ukraine', 'Alexeyevna');
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (2, 'Pack', 'Anastasiia', 'Ukraine', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (3, 'Velikaya', 'Anna', 'Ukraine', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (4, 'Glushchenko', 'Lena', 'Ukraine', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (5, 'Dabramo', 'Annamaria', 'Itali', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (6, 'Iermolenko', 'Anastasiia', 'Czech Republic', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (7, 'Denaro', 'Rosaria_Messina', 'Italy', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (8, 'Dabek', 'Paulina', 'Poland', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (9, 'Brecikova', 'Simona', 'Slovakia', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (10, 'Dzumaev', 'Malika', 'Germany', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (11, 'Petra', 'Balla', 'Budapest', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (12, 'Shkyria', 'Valeriia', 'Germany', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (13, 'Ertmer', 'Sarah', 'Itali', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (14, 'Kostenko', 'Svetlana', 'Slovakia', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (15, 'Vargova', 'Iveta', 'Poland', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (16, 'Zanlorenzi', 'Giulia', 'Russia', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (17, 'Karcagi', 'Laura', 'Belorus', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (18, 'Vasickova', 'Gabriela', 'Israel', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (19, 'Shalaeva', 'Ekaterina', 'Romania', null);
-INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Country, patronymic)
-   VALUES (20, 'Ekaterina', 'Mishina', 'Poland', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Teterina', 'Anastasiia', 'Ukraine', 'Alexeyevna');
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Pack', 'Anastasiia', 'Ukraine', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Velikaya', 'Anna', 'Ukraine', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Glushchenko', 'Lena', 'Ukraine', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Dabramo', 'Annamaria', 'Itali', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Iermolenko', 'Anastasiia', 'Czech Republic', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Denaro', 'Rosaria_Messina', 'Italy', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Dabek', 'Paulina', 'Poland', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Brecikova', 'Simona', 'Slovakia', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Dzumaev', 'Malika', 'Germany', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Petra', 'Balla', 'Budapest', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Shkyria', 'Valeriia', 'Germany', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Ertmer', 'Sarah', 'Itali', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Kostenko', 'Svetlana', 'Slovakia', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Vargova', 'Iveta', 'Poland', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Zanlorenzi', 'Giulia', 'Russia', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Karcagi', 'Laura', 'Belorus', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Vasickova', 'Gabriela', 'Israel', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Shalaeva', 'Ekaterina', 'Romania', null);
+INSERT INTO Shepartners (surnameShepartner, nameShepartner, Country, patronymic)
+   VALUES ('Ekaterina', 'Mishina', 'Poland', null);
 
--- -- --Junior1 total C
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
--- VALUES (1, 1, 1, 1, 6, 'Prohorenko', 'Yura', 6, 'Cecinati', 'Mario', 7, 'Iermolenko', 'Anastasiia', 6);
+-- --Junior1 total C
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+VALUES (1, 1, 1, 1, 6, 'Prohorenko', 'Yura', 6, 'Cecinati', 'Mario', 7, 'Iermolenko', 'Anastasiia', 6);
 
--- -- --total Junior1 C
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
--- VALUES (1, 1, 2, 1, 6, 'Prohorenko', 'Yura', 6, 'Cecinati', 'Mario', 7, 'Iermolenko', 'Anastasiia', 6);
+-- --total Junior1 C
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+VALUES (1, 1, 2, 1, 6, 'Prohorenko', 'Yura', 6, 'Cecinati', 'Mario', 7, 'Iermolenko', 'Anastasiia', 6);
 
--- --st Youth2 B
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 2, 4, 2, 1, 'Dikyi', 'Igor', 1, 'Apukhtin', 'Vladislav', 1, 'Teterina', 'Anastasiia', 1);
+--st Youth2 B
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 2, 4, 2, 1, 'Dikyi', 'Igor', 1, 'Apukhtin', 'Vladislav', 1, 'Teterina', 'Anastasiia', 1);
 
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 2, 4, 2, 2, 'Pasazkaya', 'Polina', 2, 'Poddubny', 'Denis', 2, 'Pack', 'Anastasiia', 2);
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 2, 4, 2, 2, 'Pasazkaya', 'Polina', 2, 'Poddubny', 'Denis', 2, 'Pack', 'Anastasiia', 2);
 
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 2, 4, 2, 3, 'Frolova', 'Vera', 3, 'Ishchenko', 'Artem', 4, 'Velikaya', 'Anna', 3);
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 2, 4, 2, 3, 'Frolova', 'Vera', 3, 'Ishchenko', 'Artem', 4, 'Velikaya', 'Anna', 3);
 
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 2, 4, 2, 4, 'Frolov', 'Valentin', 4, 'Khandus', 'Vladislav', 3, 'Glushchenko', 'Lena', 4);
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 2, 4, 2, 4, 'Frolov', 'Valentin', 4, 'Khandus', 'Vladislav', 3, 'Glushchenko', 'Lena', 4);
 
--- --st Youth2 A
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 2, 4, 3, 5, 'Boev', 'Igor', 5, 'Bitetto', 'Alessio', 5, 'Dabramo', 'Annamaria', 5);
--- --lat Youth2 A
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 3, 4, 3, 5, 'Boev', 'Igor', 5, 'Bitetto', 'Alessio', 5, 'Dabramo', 'Annamaria', 5);
+--st Youth2 A
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 2, 4, 3, 5, 'Boev', 'Igor', 5, 'Bitetto', 'Alessio', 5, 'Dabramo', 'Annamaria', 5);
+--lat Youth2 A
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 3, 4, 3, 5, 'Boev', 'Igor', 5, 'Bitetto', 'Alessio', 5, 'Dabramo', 'Annamaria', 5);
 
--- --lat Youth2 B
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 3, 4, 2, 1, 'Dikyi', 'Igor', 1, 'Apukhtin', 'Vladislav', 1, 'Teterina', 'Anastasiia', 1);
+--lat Youth2 B
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 3, 4, 2, 1, 'Dikyi', 'Igor', 1, 'Apukhtin', 'Vladislav', 1, 'Teterina', 'Anastasiia', 1);
 
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 3, 4, 2, 2, 'Pasazkaya', 'Polina', 2, 'Poddubny', 'Denis', 2, 'Pack', 'Anastasiia', 2);
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 3, 4, 2, 2, 'Pasazkaya', 'Polina', 2, 'Poddubny', 'Denis', 2, 'Pack', 'Anastasiia', 2);
 
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 3, 4, 2, 3, 'Frolova', 'Vera', 3, 'Ishchenko', 'Artem', 4, 'Velikaya', 'Anna', 3);
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 3, 4, 2, 3, 'Frolova', 'Vera', 3, 'Ishchenko', 'Artem', 4, 'Velikaya', 'Anna', 3);
 
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 3, 4, 2, 4, 'Frolov', 'Valentin', 4, 'Khandus', 'Vladislav', 3, 'Glushchenko', 'Lena', 4);
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 3, 4, 2, 4, 'Frolov', 'Valentin', 4, 'Khandus', 'Vladislav', 3, 'Glushchenko', 'Lena', 4);
 
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 3, 4, 2, 5, 'Boev', 'Igor', 5, 'Bitetto', 'Alessio', 5, 'Dabramo', 'Annamaria', 5);
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 3, 4, 2, 5, 'Boev', 'Igor', 5, 'Bitetto', 'Alessio', 5, 'Dabramo', 'Annamaria', 5);
 
--- --st Adult A
+--st Adult A
 
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 2, 5, 3, 5, 'Boev', 'Igor', 5, 'Bitetto', 'Alessio', 5, 'Dabramo', 'Annamaria', 5);
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 2, 5, 3, 5, 'Boev', 'Igor', 5, 'Bitetto', 'Alessio', 5, 'Dabramo', 'Annamaria', 5);
 
--- --lat Adult A
+--lat Adult A
 
--- INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
---    nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
---       nameShepartner, codeShePartner)
---    VALUES (1, 3, 5, 3, 5, 'Boev', 'Igor', 5, 'Bitetto', 'Alessio', 5, 'Dabramo', 'Annamaria', 5);
+INSERT INTO Couples (IdCompetition, IdProgram, CategoryID, ClassID, PairNumber, surnameCoach,
+   nameCoach, codeCoach, surnamePartner, namePartner, codePartner, surnameShepartner,
+      nameShepartner, codeShePartner)
+   VALUES (1, 3, 5, 3, 5, 'Boev', 'Igor', 5, 'Bitetto', 'Alessio', 5, 'Dabramo', 'Annamaria', 5);
 
 
 /*==============================================================*/
@@ -640,7 +640,7 @@ INSERT INTO Shepartners (codeShePartner, surnameShepartner, nameShepartner, Coun
 /*==============================================================*/
 
 INSERT INTO Competitions (Country, Title, DateCompetition, Place, Rules, Organizers)
-   VALUES ('Russia', 'Kremlin Cup', '18.04.2017', 'Russia', 'WDSF', 'Stanislav Popov') 
+   VALUES ('Russia', 'Kremlin Cup', '18.04.2017', 'Moscow', 'WDSF', 'Stanislav Popov') 
       RETURNING idCompetition, Country, Title, DateCompetition, Place, Rules, Organizers;
 
 INSERT INTO BallroomPrograms (IdCompetition, IdProgram, typeOfProgram)
@@ -688,7 +688,7 @@ INSERT INTO consistClass (IdCompetition, IdProgram, CategoryID, ClassID)
 /*==============================================================*/
 
 INSERT INTO Competitions (IdCompetition, Country, Title, DateCompetition, Place, Rules, Organizers)
-   VALUES (3, 'Belarus', 'Open Championship', '18.04.2017', 'Belarus', 'IDSF', 'Belarusian Dance Federation')
+   VALUES (3, 'Belarus', 'Open Championship', '18.04.2017', 'Minsk', 'IDSF', 'Belarusian Dance Federation')
       RETURNING idCompetition, Country, Title, DateCompetition, Place, Rules, Organizers;
 
 INSERT INTO BallroomPrograms (IdCompetition, IdProgram, typeOfProgram)
@@ -719,10 +719,6 @@ INSERT INTO consistClass (IdCompetition, IdProgram, CategoryID, ClassID)
    VALUES (3, 3, 3, 2);
 INSERT INTO consistClass (IdCompetition, IdProgram, CategoryID, ClassID)
    VALUES (3, 3, 3, 3);
-   
-
-
-
 
 -- select Couples.PairNumber,  Couples.surnamePartner, Couples.namePartner, Partners.Country,
 --    Couples.surnameShepartner, Couples.nameShepartner, Shepartners.Country

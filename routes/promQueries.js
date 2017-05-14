@@ -3,7 +3,7 @@ const Promise = require('bluebird');
 var db;
 
 const options = {
-	database: 'D:/Pars/3 course/2 semester/DataBase/Coursework/git_Coursework/public/bd/COURSEWORK_VER2.FDB',
+	database: 'D:/Pars/3 course/2 semester/DataBase/Coursework/git_Coursework/public/bd/COURSEWORK_VER3.FDB',
 	port: 3050,
 	user: 'SYSDBA',
 	password: 'masterkey',
@@ -70,9 +70,8 @@ queryDB = (sql) => {
 		return def.promise;
 	};
 
-const getAllID = (checkID, objHuman, typeOfHuman, req) => {
-	const def = Promise.defer();
-	let checkHuman, addHuman, newID, allID = [];
+const addNewHumanInDB = (objHuman, typeOfHuman, req) => {
+	
 
 	connectToDB(options).then(
 	  	// success
@@ -82,13 +81,6 @@ const getAllID = (checkID, objHuman, typeOfHuman, req) => {
 				if (err) {
 					def.reject(err);
 				} else {
-					rs.forEach(item => {
-						allID.push(parseInt(ab2str(item.CODEPARTNER), 10));
-					});
-					newID = Math.max.apply(null, allID) + 1;
-					addHuman = addNewHumanSql(typeOfHuman, objHuman, req.namePartner,
-						req.surnamePartner, req.countryPartner, req.patronymicPartner, newID);
-					console.log("В базе", allID, newID, checkID, addHuman);
 					def.resolve(addHuman);
 
 				}
@@ -103,20 +95,23 @@ const getAllID = (checkID, objHuman, typeOfHuman, req) => {
 };
 
 
-const addNewHumanSql = (typeOfHuman, objHuman, name, surname, county, patronymic, newID) => {
+const addNewHumanSql = (typeOfHuman, objHuman, name, surname, patronymic, county) => {
 	const isPatronymic = patronymic === "" ? 'null' : `'${patronymic}'`;
 	let parseObj = ``;
 	let codeHuman = objHuman[0];
+	console.log('name', name, 'surname', surname, 'patronymic', patronymic, 'county', county)
 	objHuman.forEach((item) => {
-		if (objHuman[objHuman.length - 1] == item) {
+		if (objHuman[objHuman.length - 1] == item && item !== objHuman[0]) {
 			parseObj += item;
+		} else if (item === objHuman[0]) {
+			return;
 		} else {
 			parseObj += item + ', '; 
 		}
 	});
 	return`
 		INSERT INTO ${typeOfHuman} (${parseObj})
-   		VALUES (${newID}, '${name}', '${surname}', '${county}', ${isPatronymic})
+   		VALUES ('${name}', '${surname}', '${county}', ${isPatronymic})
    		RETURNING ${codeHuman};
 	`
 }
@@ -129,40 +124,42 @@ const checkNewHumanSql = (typeOfHuman, objHuman, newID) => {
 	`
 }
 
-const checkEmptyIndex = (typeOfHuman, objHuman) => {
-	return`
-		select ${objHuman[0]}
-		from ${typeOfHuman};
-	`
-}
-
 addNewHuman = (req, callback) => {
-	let objHuman, checkID, allID, typeOfHuman;
+	let objHuman, addHuman, checkID, typeOfHuman;
 
 	if (req.namePartner != undefined) {
 		const objPartner = ["codePartner", "namePartner", "surnamePartner", "Country", "patronymic"];
 		typeOfHuman = 'Partners';
 		objHuman = objPartner;
-		checkID = checkEmptyIndex('Partners', objHuman);
+		addHuman = addNewHumanSql(typeOfHuman, objHuman, req.namePartner,
+			req.surnamePartner, req.patronymicPartner, req.countryPartner);
+	} else if (req.nameShepartner != undefined) {
+		const objShepartner = ["codeShePartner", "nameShePartner", "surnameShePartner", "Country", "patronymic"];
+		typeOfHuman = 'Shepartners';
+		objHuman = objShepartner;
+		addHuman = addNewHumanSql(typeOfHuman, objHuman, req.nameShepartner,
+			req.surnameShepartner, req.patronymicShepartner, req.countryShepartner);
+	} else if (req.nameCoach != undefined) {
+		const objCoach = ["codeCoach", "nameCoach", "surnameCoach", "Country", "patronymicCoaches"];
+		typeOfHuman = 'Coaches';
+		objHuman = objCoach;
+		addHuman = addNewHumanSql(typeOfHuman, objHuman, req.nameCoach,
+			req.surnameCoach, req.patronymicCoach, req.countryCoach);
 	} else {
 		console.log('error');
 	}
 
-	getAllID(checkID, objHuman, typeOfHuman, req)
-		.then(
-			(human) => {
-				disconnectFromDB();
-				return human;
-			},
-			err => {
-				console.log(err);
-	        	disconnectFromDB();
-			})
-		.then(human => queryDB(human))
+	console.log("В базе", addHuman);
+
+	queryDB(addHuman)
 		.then(
 			rs => {
-	        	disconnectFromDB();
-	        	let checkHuman = checkNewHumanSql(typeOfHuman, objHuman, rs.CODEPARTNER);
+				disconnectFromDB();
+				console.log('aaaa', rs);
+				let checkHuman;
+				for (key in rs) {
+	        		checkHuman = checkNewHumanSql(typeOfHuman, objHuman, rs[key]);
+				}
 	        	console.log("передпоследний", checkHuman);
 	        	return checkHuman;
 			},

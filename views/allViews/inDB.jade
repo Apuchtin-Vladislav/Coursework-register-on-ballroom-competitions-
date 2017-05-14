@@ -36,18 +36,18 @@ block inDB
                         label(for="partner") Partner:
                         select(class="form-control selectpicker", name="Partner", data-live-search="true", title='Choose: partner', required)
                             each partner in inDB.Partners
-                                option(value='#{partner.CODEPARTNER}' data-tokens='#{partner.NAMEPARTNER} #{partner.SURNAMEPARTNER}') #{partner.NAMEPARTNER} #{partner.SURNAMEPARTNER}, #{partner.COUNTRY}
+                                option(value='#{partner.CODEPARTNER}' data-tokens='#{partner.NAMEPARTNER} #{partner.SURNAMEPARTNER}') #{partner.NAMEPARTNER} #{partner.SURNAMEPARTNER} #{partner.PATRONYMIC}, #{partner.COUNTRY}
 
                         label(for="shePartner") Shepartner:
                         select(class="form-control selectpicker", name="Shepartner",
                             data-live-search="true", title='Choose: shepartner', required)
                             each shepartner in inDB.ShePartners
-                                option(value='#{shepartner.CODESHEPARTNER}' data-tokens='#{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}') #{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}, #{shepartner.COUNTRY}
+                                option(value='#{shepartner.CODESHEPARTNER}' data-tokens='#{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER}') #{shepartner.NAMESHEPARTNER} #{shepartner.SURNAMESHEPARTNER} #{shepartner.PATRONYMIC}, #{shepartner.COUNTRY}
 
                         label(for="coach") Coach:
                         select(class="form-control selectpicker", name="Coach", data-live-search="true", title='Choose: coach', required)
                             each coach in inDB.Coaches
-                                option(value='#{coach.CODECOACH}' data-tokens='#{coach.NAMECOACH} #{coach.SURNAMECOACH}') #{coach.NAMECOACH} #{coach.SURNAMECOACH}, #{coach.COUNTRY}
+                                option(value='#{coach.CODECOACH}' data-tokens='#{coach.NAMECOACH} #{coach.SURNAMECOACH}') #{coach.NAMECOACH} #{coach.SURNAMECOACH} #{coach.PATRONYMICCOACHES}, #{coach.COUNTRY}
 
                         label(for="class") Category, Class, Program:
                         select(class="form-control selectpicker", name="Class", title='Choose: category, class, program', required)

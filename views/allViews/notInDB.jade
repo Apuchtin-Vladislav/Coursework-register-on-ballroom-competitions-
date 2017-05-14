@@ -39,19 +39,19 @@ block notInDB
                     action="/competition/#{notInDB[0].IDCOMPETITION}/registration/notInDB/answer" method="post")
                     div(class="input-group")
                         span(class="input-group-addon lableWidth") Name
-                        input(id="namePartner" type="text" class="inputHeight form-control" name="namePartner" placeholder="Input name partner")
+                        input(id="namePartner", type="text", class="inputHeight form-control", name="namePartner", placeholder="Input name partner", maxlength="31", pattern="^[-a-zA-Z\u0410-\u044F`]+$", required)
                     br
                     div(class="input-group")
                         span(class="input-group-addon lableWidth") Surname
-                        input(id="surnamePartner" type="text" class="form-control inputHeight" name="surnamePartner" placeholder="Input surname partner")
-                    br
-                    div(class="input-group")
-                        span(class="input-group-addon lableWidth") Country
-                        input(id="countryPartner" type="text" class="form-control inputHeight" name="countryPartner" placeholder="Input country partner")
+                        input(id="surnamePartner" type="text" class="form-control inputHeight" name="surnamePartner" placeholder="Input surname partner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
                     br
                     div(class="input-group")
                         span(class="input-group-addon lableWidth") Patronymic
-                        input(id="patronymicPartner" type="text" class="form-control inputHeight" name="patronymicPartner" placeholder="Input patronymic partner")
+                        input(id="patronymicPartner" type="text" class="form-control inputHeight" name="patronymicPartner" placeholder="Input patronymic partner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$")
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Country
+                        input(id="countryPartner" type="text" class="form-control inputHeight" name="countryPartner" placeholder="Input country partner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
                     br
                     button(id='couple', type="submit", class="btn btn-success", style="float: left;") Submit
             div(class="col-xs-4 regDivRight")
@@ -59,19 +59,19 @@ block notInDB
                     action="/competition/#{notInDB[0].IDCOMPETITION}/registration/notInDB/answer" method="post")
                     div(class="input-group")
                         span(class="input-group-addon lableWidth") Name
-                        input(id="nameShepartner" type="text" class="inputHeight form-control" name="nameShepartner" placeholder="Input name shepartner")
+                        input(id="nameShepartner" type="text" class="inputHeight form-control" name="nameShepartner" placeholder="Input name shepartner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
                     br
                     div(class="input-group")
                         span(class="input-group-addon lableWidth") Surname
-                        input(id="surnameShepartner" type="text" class="form-control inputHeight" name="surnameShepartner" placeholder="Input surname shepartner")
-                    br
-                    div(class="input-group")
-                        span(class="input-group-addon lableWidth") Country
-                        input(id="countryShepartner" type="text" class="form-control inputHeight" name="countryShepartner" placeholder="Input country shepartner")
+                        input(id="surnameShepartner" type="text" class="form-control inputHeight" name="surnameShepartner" placeholder="Input surname shepartner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
                     br
                     div(class="input-group")
                         span(class="input-group-addon lableWidth") Patronymic
-                        input(id="patronymicShepartner" type="text" class="form-control inputHeight" name="patronymicShepartner" placeholder="Input patronymic shepartner")
+                        input(id="patronymicShepartner" type="text" class="form-control inputHeight" name="patronymicShepartner" placeholder="Input patronymic shepartner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" )
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Country
+                        input(id="countryShepartner" type="text" class="form-control inputHeight" name="countryShepartner" placeholder="Input country shepartner" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
                     br
                     button(id='couple', type="submit", class="btn btn-success", style="float: left;") Submit
     
@@ -80,30 +80,36 @@ block notInDB
                     action="/competition/#{notInDB[0].IDCOMPETITION}/registration/notInDB/answer" method="post")
                     div(class="input-group")
                         span(class="input-group-addon lableWidth") Name
-                        input(id="nameCoach" type="text" class="inputHeight form-control" name="nameCoach" placeholder="Input name coach")
+                        input(id="nameCoach" type="text" class="inputHeight form-control" name="nameCoach" placeholder="Input name coach" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
                     br
                     div(class="input-group")
                         span(class="input-group-addon lableWidth") Surname
-                        input(id="surnameCoach" type="text" class="form-control inputHeight" name="surnameCoach" placeholder="Input surname coach")
-                    br
-                    div(class="input-group")
-                        span(class="input-group-addon lableWidth") Country
-                        input(id="countryCoach" type="text" class="form-control inputHeight" name="countryCoach" placeholder="Input country coach")
+                        input(id="surnameCoach" type="text" class="form-control inputHeight" name="surnameCoach" placeholder="Input surname coach" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
                     br
                     div(class="input-group")
                         span(class="input-group-addon lableWidth") Patronymic
-                        input(id="patronymicCoach" type="text" class="form-control inputHeight" name="patronymicCoach" placeholder="Input patronymic coach")
+                        input(id="patronymicCoach" type="text" class="form-control inputHeight" name="patronymicCoach" placeholder="Input patronymic coach" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$")
+                    br
+                    div(class="input-group")
+                        span(class="input-group-addon lableWidth") Country
+                        input(id="countryCoach" type="text" class="form-control inputHeight" name="countryCoach" placeholder="Input country coach" maxlength="31" pattern="^[-a-zA-Z\u0410-\u044F`]+$" required)
                     br
                     button(id='couple', type="submit", class="btn btn-success", style="float: left;") Submit
     script.
         const formPartner = $('#clickPartner');
         const formShepartner = $('#clickShepartner');
-        const formCoach = $('#clickCoach')
+        const formCoach = $('#clickCoach');
         const regFormPartner = $('#regFormPartner');
         const regFormShepartner = $('#regFormShepartner');
         const regFormChoach = $('#regFormChoach');
         const tbody = $('#tableBody');
         
+        //- $('input').change(event => {
+        //-     const oneInput = event.target.value;
+
+        //-     console.log(regoneInput);
+        //- });
+
         tbody.hide();
         regFormPartner.hide();
         regFormShepartner.hide();
