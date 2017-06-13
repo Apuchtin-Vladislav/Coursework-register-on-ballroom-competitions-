@@ -427,46 +427,46 @@ INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudic
 INSERT INTO Adjudicators (surnameAdjudicator, nameAdjudicator, patronymicAdjudicator, Country)
    VALUES ('Kavzinadze', 'Nino', null, 'Georgia');
 
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 1, 'Dikyi', 'Igor');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 2, 'Pasazkaya', 'Polina');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 3, 'Frolova', 'Vera');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 4, 'Frolov', 'Valentin');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 5, 'Boev', 'Igor');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 6, 'Prohorenko', 'Yura');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 7, 'Golovashenko', 'Igor');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 8, 'Tkachenko', 'Artem');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 9, 'Tkachenko', 'Anna');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 10, 'Fujii', 'Masaaki');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 11, 'Horacek', 'Petr');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 12, 'Juul', 'Kevin');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 13, 'Sandor', 'Zoltan');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 14, 'Rusu', 'Alexandru');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 15, 'Bodini', 'Luigi');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 16, 'Milicija', 'Sergej');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 17, 'Novak', 'Daniela');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 18, 'Ashrafov', 'Azar');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 19, 'Smirnova', 'Galina');
--- INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
---    VALUES (1, 20, 'Kavzinadze', 'Nino');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 1, 'Dikyi', 'Igor');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 2, 'Pasazkaya', 'Polina');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 3, 'Frolova', 'Vera');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 4, 'Frolov', 'Valentin');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 5, 'Boev', 'Igor');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 6, 'Prohorenko', 'Yura');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 7, 'Golovashenko', 'Igor');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 8, 'Tkachenko', 'Artem');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 9, 'Tkachenko', 'Anna');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 10, 'Fujii', 'Masaaki');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 11, 'Horacek', 'Petr');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 12, 'Juul', 'Kevin');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 13, 'Sandor', 'Zoltan');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 14, 'Rusu', 'Alexandru');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 15, 'Bodini', 'Luigi');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 16, 'Milicija', 'Sergej');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 17, 'Novak', 'Daniela');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 18, 'Ashrafov', 'Azar');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 19, 'Smirnova', 'Galina');
+INSERT INTO judge (IdCompetition, codeAdjudicator, surnameAdjudicator, nameAdjudicator)
+   VALUES (1, 20, 'Kavzinadze', 'Nino');
 
 INSERT INTO Partners (surnamePartner, namePartner, Country, patronymic)
    VALUES ('Apukhtin', 'Vladislav', 'Ukraine', 'Sergiyovich');

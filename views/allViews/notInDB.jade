@@ -103,19 +103,12 @@ block notInDB
         const regFormShepartner = $('#regFormShepartner');
         const regFormChoach = $('#regFormChoach');
         const tbody = $('#tableBody');
-        
-        //- $('input').change(event => {
-        //-     const oneInput = event.target.value;
-
-        //-     console.log(regoneInput);
-        //- });
 
         tbody.hide();
         regFormPartner.hide();
         regFormShepartner.hide();
         regFormChoach.hide();
         formPartner.bind('click', () => {
-            //regFormPartner.css("display") === 'none' ?
             tbody.show();
             regFormPartner.show();
             regFormShepartner.hide();

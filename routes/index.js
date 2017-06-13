@@ -72,7 +72,6 @@ router.post('/competition/:id/registration/inDB/answer', urlencodedParser, funct
 
 router.post('/competition/:id/registration/notInDB/answer', urlencodedParser, function(request, response) {
 	if(!request.body) return response.sendStatus(400);
-	//request.body.idCompetition = request.params.id;
 	fdb.addNewHuman(request.body, (result) => {
 		db.getInfoFromSingleCompetition(request.params.id, function (allInformation) {
 			result.info = allInformation[0];
@@ -81,15 +80,6 @@ router.post('/competition/:id/registration/notInDB/answer', urlencodedParser, fu
 			response.render('../views/allViews/answerForSingleHuman.jade', {answer: result});
 		});
 	});
-	// db.addCouple(request.body, function (result) {
-
-	// 	db.getInfoFromSingleCompetition(request.params.id, function (allInformation) {
-	// 		result.info = allInformation[0];
-	// 		console.log(result);
-
-	// 		response.render('../views/allViews/answer.jade', {answer: result});
-	// 	});
-	// });
 });
 
 

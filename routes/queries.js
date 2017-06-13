@@ -1,14 +1,7 @@
 const Firebird = require('node-firebird');
+const dbOptions = require('./dbOptions.js');
 
-const options = {
-	database: 'D:/Pars/3 course/2 semester/DataBase/Coursework/git_Coursework/public/bd/COURSEWORK_VER3.FDB',
-	port: 3050,
-	user: 'SYSDBA',
-	password: 'masterkey',
-	lowercase_keys: false, // set to true to lowercase keys
-	role: null,			   // default
-	pageSize: 4096		   // default when creating database
-};
+const options = dbOptions.options;
 
 
 /*------------------------------ UTILITY -------------------------------*/
@@ -75,7 +68,6 @@ function getAllCompetitions (callback) {
 					db.detach(disconnectFromDB());
 				} else {
 					db.detach(disconnectFromDB());
-					//console.log(result.name);
 					callback(result);
 				}
 			});		
