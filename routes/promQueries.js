@@ -1,16 +1,9 @@
 const Firebird = require('node-firebird');
 const Promise = require('bluebird');
+const dbOptions = require('./dbOptions.js');
 var db;
 
-const options = {
-	database: 'D:/Pars/3 course/2 semester/DataBase/Coursework/git_Coursework/public/bd/COURSEWORK_VER3.FDB',
-	port: 3050,
-	user: 'SYSDBA',
-	password: 'masterkey',
-	lowercase_keys: false, // set to true to lowercase keys
-	role: null,			   // default
-	pageSize: 4096		   // default when creating database
-};
+const options = dbOptions.options;
 
 
 /*------------------------------ UTILITY -------------------------------*/
@@ -182,10 +175,8 @@ addNewHuman = (req, callback) => {
 			console.error(error);
 			callback(error);
 		});
-} 
+}
 
-//answer таблица ввиде как в info, что бы был виден ID партнера
-//в registration сделать виден ID
 module.exports = {
 	addNewHuman: addNewHuman
 }
